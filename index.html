@@ -1,10 +1,22 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>Luis Martí</title>
-    <meta http-equiv="refresh" content="0;URL='http://lmarti.com/'" />
-  </head>
-  <body>
-    <p>You are being redirected to <a href="http://lmarti.com/">
-      http://lmarti.com</a>.</p> 
-  </body>
-</html>
+---
+layout: default
+title: Home
+---
+<section class="intro">
+  <div class="photo" aria-hidden="true">photo</div>
+  <div class="bio">
+    <p>Hi, I'm <strong>Luis Martí</strong> — a researcher working on machine
+    learning, evolutionary computation, and artificial intelligence.</p>
+    <p>This is my academic home: a list of my <a href="/publications/">publications</a>,
+    my <a href="/cv/">CV</a>, and the occasional <a href="/blog/">note</a>.
+    <em>(Placeholder bio — replace with your own.)</em></p>
+  </div>
+</section>
+
+<hr>
+
+<section class="recent">
+  <h2>Recent publications</h2>
+  {% bibliography --max 3 %}
+  <p><a href="/publications/">See all publications &rarr;</a></p>
+</section>

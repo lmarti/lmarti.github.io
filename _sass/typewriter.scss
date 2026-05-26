@@ -1,0 +1,193 @@
+// Typewriter aesthetic: monospace, narrow centered column, muted palette.
+// Family resemblance to alixedi/typewriter, rewritten for Jekyll 4 / modern CSS.
+
+$mono: "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+$ink: #222;
+$muted: #6b6b6b;
+$rule: #d8d8d8;
+$bg: #fcfcfa;
+$accent: #1a1a1a;
+$measure: 42rem;
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  font-family: $mono;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: $ink;
+  background: $bg;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: $measure;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+a {
+  color: $accent;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+a:hover { background: #f0efea; }
+
+:focus-visible {
+  outline: 2px solid $ink;
+  outline-offset: 2px;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 2rem 0 0.75rem;
+}
+h1 { font-size: 1.4rem; }
+h2 { font-size: 1.15rem; }
+h3 { font-size: 1rem; }
+
+p, ul, ol { margin: 0 0 1rem; }
+
+hr {
+  border: 0;
+  border-top: 1px solid $rule;
+  margin: 2rem 0;
+}
+
+code, pre {
+  font-family: $mono;
+  background: #f2f1ec;
+}
+pre { padding: 0.75rem 1rem; overflow-x: auto; }
+code { padding: 0.1rem 0.3rem; }
+pre code { padding: 0; background: none; }
+
+// ---- Header / nav ----
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $rule;
+}
+.site-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+.site-name:hover { background: none; }
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-nav a { text-decoration: none; }
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  background: none;
+}
+.site-nav a[aria-current="page"] { font-weight: 700; }
+
+// ---- Footer ----
+.site-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid $rule;
+  color: $muted;
+  font-size: 0.8rem;
+}
+
+// ---- Home ----
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+.intro .photo {
+  flex: 0 0 auto;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid $rule;
+  background: repeating-linear-gradient(45deg, #efeee9, #efeee9 6px, #e7e6e0 6px, #e7e6e0 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $muted;
+  font-size: 0.7rem;
+  text-align: center;
+}
+.intro .bio { flex: 1 1 16rem; }
+.intro .bio p:first-child { margin-top: 0; }
+
+// ---- Publications list ----
+ul.publications {
+  list-style: none;
+  margin: 1rem 0;
+  padding: 0;
+}
+ul.publications li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid $rule;
+}
+ul.publications li.is-hidden { display: none; }
+.pub { display: block; }
+
+// ---- Filter chips + sort toggle ----
+.pub-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid $rule;
+  border-bottom: 1px solid $rule;
+}
+.pub-controls[hidden] { display: none; }
+.chip,
+.sort-toggle {
+  font: inherit;
+  font-size: 0.8rem;
+  color: $ink;
+  background: #f2f1ec;
+  border: 1px solid $rule;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.chip:hover,
+.sort-toggle:hover { background: #e7e6e0; }
+.chip[aria-pressed="true"] {
+  background: $ink;
+  color: $bg;
+  border-color: $ink;
+}
+.sort-toggle { margin-left: auto; }
+
+.pub-count {
+  font-size: 0.8rem;
+  color: $muted;
+  margin: 0 0 1rem;
+}
+
+// ---- 404 ----
+.error-page { text-align: center; padding: 3rem 0; }
+
+@media (max-width: 30rem) {
+  .site-header { flex-direction: column; }
+  .sort-toggle { margin-left: 0; }
+}
