@@ -1,10 +1,13 @@
 <header class="site-header">
-  <a class="site-name" href="/">{{ site.title }}</a>
+  <h1 class="site-title"><a href="/">{{ site.title }}</a></h1>
+  {%- if site.description -%}
+  <p class="site-sub">{{ site.description | strip_newlines }}</p>
+  {%- endif -%}
   <nav class="site-nav" aria-label="Primary">
-    <ul>
+    <ul class="navlist">
       {%- for item in site.nav -%}
       {%- assign cur = page.url | default: "/" -%}
-      <li><a href="{{ item.url }}"{% if cur == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      <li><a class="page-link" href="{{ item.url }}"{% if cur == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
       {%- endfor -%}
     </ul>
   </nav>

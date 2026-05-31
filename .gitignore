@@ -34,3 +34,8 @@ vendor/
 coverage/
 .cache/
 tmp/
+
+# ── Agent tooling (local-only, not site content) ──
+.agents/
+.cate/
+skills-lock.json

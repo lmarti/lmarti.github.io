@@ -4,5 +4,7 @@
   {%- assign page_title = page.title -%}
   <title>{% if page_title %}{{ page_title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description | strip_newlines }}">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/font/Serif/cmun-serif.css">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>

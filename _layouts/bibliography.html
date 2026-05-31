@@ -1,1 +1,15 @@
-<span class="pub" data-type="{{ entry.type }}" data-year="{{ entry.year }}">{{ reference }}</span>
+{% comment %}
+  data-type drives the /publications/ filter chips (exact match). Some bib
+  entries override the entry type with a `type` field (patentus, patreq,
+  patreqeu); collapse those patent variants to a single `patent` category so
+  the Patent chip catches all of them.
+{% endcomment %}
+{% assign pub_type = entry.type %}
+{% if pub_type contains "pat" %}{% assign pub_type = "patent" %}{% endif %}
+{% comment %} APA inverts every author to "Surname, Initials", so the site owner always renders as "Martí, L." regardless of author position. Bold it. {% endcomment %}
+{% assign reference = reference | replace: "Martí, L.", "<strong>Martí, L.</strong>" %}
+<span class="pub" data-type="{{ pub_type }}" data-year="{{ entry.year }}">{{ reference }}</span>
+{% if entry.abstract %}<button class="abstract-toggle" type="button" aria-expanded="false" hidden>Show abstract</button>
+<div class="abstract">{{ entry.abstract | normalize_whitespace }}</div>{% endif %}
+<button class="bibtex-toggle" type="button" aria-expanded="false" hidden>Show BibTeX</button>
+<div class="bibtex"><button class="bibtex-copy" type="button" aria-label="Copy BibTeX" title="Copy BibTeX" hidden><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.3" d="M5.5 5.5V2.5h8v8h-3M2.5 5.5h8v8h-8z"/></svg><span class="visually-hidden">Copy</span></button><pre><code>{{ entry.bibtex | escape }}</code></pre></div>

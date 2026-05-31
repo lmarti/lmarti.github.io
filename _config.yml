@@ -46,3 +46,4 @@ exclude:
   - .bg-shell
   - skills-lock.json
   - vendor
+  - .cate

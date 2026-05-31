@@ -71,3 +71,94 @@
   applySort();
   applyFilter();
 })();
+
+// Abstract toggles. Without JS the abstract stays visible and no button shows;
+// with JS we collapse each abstract and reveal a button that toggles it.
+(function () {
+  "use strict";
+
+  var buttons = Array.prototype.slice.call(
+    document.querySelectorAll(".abstract-toggle")
+  );
+
+  buttons.forEach(function (btn) {
+    var panel = btn.nextElementSibling;
+    if (!panel || !panel.classList.contains("abstract")) return;
+
+    panel.hidden = true;
+    btn.hidden = false;
+
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+      btn.textContent = open ? "Show abstract" : "Hide abstract";
+    });
+  });
+})();
+
+// BibTeX toggles. Without JS the BibTeX block stays visible and no buttons show;
+// with JS we collapse each block, reveal a toggle, and reveal an in-block copy
+// button that writes the citation to the clipboard.
+(function () {
+  "use strict";
+
+  var buttons = Array.prototype.slice.call(
+    document.querySelectorAll(".bibtex-toggle")
+  );
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "absolute";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy") ? resolve() : reject();
+      } catch (e) {
+        reject(e);
+      }
+      document.body.removeChild(ta);
+    });
+  }
+
+  buttons.forEach(function (btn) {
+    var panel = btn.nextElementSibling;
+    if (!panel || !panel.classList.contains("bibtex")) return;
+
+    var copyBtn = panel.querySelector(".bibtex-copy");
+    var code = panel.querySelector("code");
+
+    panel.hidden = true;
+    btn.hidden = false;
+
+    btn.addEventListener("click", function () {
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+      btn.textContent = open ? "Show BibTeX" : "Hide BibTeX";
+    });
+
+    if (copyBtn && code) {
+      copyBtn.hidden = false;
+      var resetTimer;
+      copyBtn.addEventListener("click", function () {
+        copyText(code.textContent).then(function () {
+          copyBtn.classList.add("is-copied");
+          copyBtn.setAttribute("title", "Copied");
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(function () {
+            copyBtn.classList.remove("is-copied");
+            copyBtn.setAttribute("title", "Copy BibTeX");
+          }, 1500);
+        }, function () {});
+      });
+    }
+  });
+})();
