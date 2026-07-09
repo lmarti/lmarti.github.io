@@ -1,0 +1,201 @@
+\documentclass[11pt,american]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.0cm]{geometry}
+
+% \usepackage{sourcesanspro}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+%\setmainfont{Source Sans Pro}
+% % \usepackage{mathspec}
+% % \setmainfont{Didot}[Scale=MatchLowercase]
+% % \setsansfont{Inria Sans}[Scale=MatchLowercase]
+%\setsansfont{Source Sans Pro}[Scale=MatchLowercase]
+% %\setsansfont{Lato}[Scale=MatchLowercase]
+
+\setmainfont{Source Sans Pro}[Scale=MatchLowercase]
+
+% % \setmathfont[Scale=MatchLowercase]{Inria Serif}
+% %\setmathrm[Scale=MatchLowercase]{Inria Sans}
+\setmonofont{Inconsolata}[Scale=MatchLowercase,Kerning=Uppercase]
+% \usepackage{mathastext}
+%\renewcommand{\familydefault}{\sfdefault}
+
+
+\usepackage{hyperref,csquotes,babel,doilink}
+
+\usepackage[backend=biber,style=ieee,sorting=ydnt,maxnames=92,defernumbers=true]{biblatex}
+\usepackage{xpatch}
+
+% \DeclareLanguageMapping{american}{american-apa}
+\addbibresource{truquis.bib}
+\addbibresource{luis.bib}
+\addbibresource{nayat.bib}
+
+\newbibmacro*{name:bold}[2]{%
+  \def\do##1{\iffieldequalstr{hash}{##1}{\bfseries\listbreak}{}}%
+  \dolistloop{\boldnames}%
+}
+
+\newcommand*{\boldnames}{}
+
+\xpretobibmacro{name:apa:family-given}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+\xapptobibmacro{name:apa:family-given}{\endgroup}{}{}
+\xapptobibmacro{name:delim}{\endgroup}{}{}
+\renewcommand*{\boldnames}{}
+\forcsvlist{\listadd\boldnames}{{4217e50b7000ee061a585e08088456f0}}
+
+\makeatletter
+% \def\fnblx@bibfile@name{\jobname -fnblx.bib}
+% \newwrite\fnblx@bibfile
+% \immediate\openout\fnblx@bibfile=\fnblx@bibfile@name
+
+% \immediate\write\fnblx@bibfile{%
+%   @comment{Auto-generated file}\blx@nl}
+
+% \newcounter{fnblx@name}
+% \setcounter{fnblx@name}{0}
+
+% \newcommand*{\fnblx@writenametobib}[1]{%
+%   \stepcounter{fnblx@name}%
+%   \edef\fnblx@tmp@nocite{%
+%     \noexpand\AfterPreamble{%
+%       \noexpand\setbox0\noexpand\vbox{%
+%         \noexpand\fnblx@getmethehash{fnblx@name@\the\value{fnblx@name}}}}%
+%   }%
+%   \fnblx@tmp@nocite
+%   \immediate\write\fnblx@bibfile{%
+%     @misc{fnblx@name@\the\value{fnblx@name}, author = {\unexpanded{#1}}, %
+%           options = {dataonly=true},}%
+%   }%
+% }
+
+% \AtEndDocument{%
+%   \closeout\fnblx@bibfile}
+
+% \addbibresource{\fnblx@bibfile@name}
+
+% \newcommand*{\fnblx@namehashes}{}
+% \DeclareNameFormat{fnblx@hashextract}{%
+%   \xifinlist{\thefield{hash}}{\fnblx@namehashes}
+%     {}
+%     {\listxadd{\fnblx@namehashes}{\thefield{hash}}}}
+
+% \DeclareCiteCommand{\fnblx@getmethehash}
+%   {}
+%   {\printnames[fnblx@hashextract][1-999]{author}}
+%   {}
+%   {}
+
+% \newtoggle{fnblx@tempa}
+% \DeclareIndexNameFormat{fnblx@checkfilternames}{%
+%   \xifinlist{\thefield{hash}}{\fnblx@namehashes}
+%     {\global\toggletrue{fnblx@tempa}}
+%     {}}
+
+% \newcommand*{\addbfilternames}{\forcsvlist\fnblx@writenametobib}
+% \newcommand*{\resetfilternames}{\def\fnblx@namehashes{}}
+
+% \defbibcheck{filternames}{%
+%   \global\togglefalse{fnblx@tempa}
+%   \indexnames[fnblx@checkfilternames][1-999]{labelname}%
+%   \iftoggle{fnblx@tempa}
+%     {}
+%     {\skipentry}}
+    
+% \defbibcheck{notfilternames}{%
+%   \global\togglefalse{fnblx@tempa}
+%   \indexnames[fnblx@checkfilternames][1-999]{labelname}%
+%   \iftoggle{fnblx@tempa}
+%     {\skipentry}
+%     {}}
+% \makeatother
+
+% \DeclareSourcemap{
+%   \maps[datatype=bibtex]{
+%     \map{
+%       \step[fieldsource=author,
+%             match=Sanchez,
+%             final]
+%       \step[fieldset=keywords, fieldvalue=aa]
+%     }
+%   }
+% }
+
+% para filtrar solo quien interesa de la bibliografía
+\newcommand{\me}{Martí}
+\DeclareSourcemap{
+  \maps[datatype=bibtex, overwrite=false]{
+    \map{
+      \step[fieldsource=author,
+            match=\me,
+            final]
+      \step[fieldset=keywords, fieldvalue=myself] 
+    }
+    \map{
+      \step[fieldsource=editor,
+            match=\me,
+            final]
+      \step[fieldset=keywords, fieldvalue=myself]    
+      }
+  }
+}
+\makeatother
+
+\DeclareFieldFormat{hal}{%
+  \mkbibacro{hal}\addcolon\space
+  \ifhyperref
+    {\href{https://hal.archives-ouvertes.fr/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}
+    
+\DeclareFieldAlias{eprint:hal}{hal}
+\DeclareFieldAlias{eprint:HAL}{eprint:hal}
+
+\renewbibmacro*{eprint}{%
+  \printfield{hal}%
+  \newunit\newblock
+  \iffieldundef{eprinttype}
+    {\printfield{eprint}}
+    {\printfield[eprint:\strfield{eprinttype}]{eprint}}}
+
+\DeclareFieldFormat{url}{url\addcolon\space\url{#1}}
+
+\renewbibmacro*{finentry}{%
+  \setunit{\finentrypunct\par}%
+  \\{\textbf{Abstract:}\ \usebibmacro{abstract}}%
+  \finentry}
+
+\title{List of Scientific Publications Organized by Type}
+\author{Luis Martí}
+\date{June 2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\nocite{*}
+\printbibliography[heading=bibnumbered,type=patent,title={Patents},notkeyword=pending, resetnumbers]
+\printbibliography[heading=bibnumbered,type=patent,title={Patents pending},keyword=pending, resetnumbers]
+
+\printbibliography[heading=bibnumbered,type=article,title={Journal papers}, resetnumbers] % ,keyword=myself]
+\printbibliography[heading=bibnumbered,type=inproceedings,title={Conference papers (peer-reviewed)},notkeyword=talk, resetnumbers] % keyword=myself,
+%\printbibliography[type=inproceedings,title={Talks papers}, keyword={aa}]
+
+\defbibfilter{chapters}{type=chapter or type=inbook or type=incollection}
+\printbibliography[heading=bibnumbered,title={Book chapters (peer-reviewed)}, filter=chapters, resetnumbers]
+
+\printbibliography[heading=bibnumbered,title={Books},type=book, resetnumbers]
+
+\printbibliography[heading=bibnumbered,type=proceedings,title={Edited books and proceedings}, resetnumbers]
+
+\printbibliography[heading=bibnumbered,type=report,title={Position papers and technical reports}, resetnumbers]
+
+% \printbibliography[heading=subbibliography, title={Technical reports},type=techreport]
+% \printbibliography[heading=bibnumbered,title={Keynotes, invited talks and other activities}, nottype=patent, nottype=report, nottype=chapter, nottype=proceedings, nottype=inbook, nottype=incollection, nottype=article, nottype=inproceedings, nottype=book, keyword=myself]
+
+\defbibfilter{mytalks}{keyword=talk}
+\printbibliography[heading=bibnumbered,title={Keynotes, invited talks and other activities}, filter=mytalks, resetnumbers]
+
+\end{document}
