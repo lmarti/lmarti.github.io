@@ -1,23 +1,54 @@
 ---
 layout: page
 title: Publications
+hide_title: true
 permalink: /publications/
 ---
-<p>Publications are generated from a single BibTeX source. Use the controls to
-filter by type or change the sort order. Everything stays visible with
-JavaScript disabled.</p>
 
 <div class="pub-controls" hidden>
-  <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
-  <button class="chip" type="button" data-filter="inproceedings" aria-pressed="false">Conference</button>
-  <button class="chip" type="button" data-filter="article" aria-pressed="false">Journal</button>
-  <button class="chip" type="button" data-filter="patent" aria-pressed="false">Patent</button>
-  <button class="chip" type="button" data-filter="incollection" aria-pressed="false">Book chapter</button>
-  <button class="chip" type="button" data-filter="book" aria-pressed="false">Book</button>
-  <button class="chip" type="button" data-filter="techreport" aria-pressed="false">Tech report</button>
-  <button class="sort-toggle" type="button" aria-pressed="false">Sort: Newest first</button>
+  <button class="chip" type="button" data-filter="all" aria-pressed="true">
+    All
+  </button>
+  <button
+    class="chip"
+    type="button"
+    data-filter="inproceedings"
+    aria-pressed="false"
+  >
+    Conferences
+  </button>
+  <button class="chip" type="button" data-filter="article" aria-pressed="false">
+    Journal
+  </button>
+  <button class="chip" type="button" data-filter="patent" aria-pressed="false">
+    Patents
+  </button>
+  <button
+    class="chip"
+    type="button"
+    data-filter="incollection"
+    aria-pressed="false"
+  >
+    Book chapters
+  </button>
+  <button class="chip" type="button" data-filter="book" aria-pressed="false">
+    Book
+  </button>
+  <button
+    class="chip"
+    type="button"
+    data-filter="techreport"
+    aria-pressed="false"
+  >
+    Reports and preprints
+  </button>
+  <button class="sort-toggle" type="button" aria-pressed="false">
+    Sort: Newest first
+  </button>
 </div>
 
 <p class="pub-count" aria-live="polite"></p>
 
-{% bibliography %}
+<div class="pub-scroll" role="region" aria-label="Publications" tabindex="0">
+  {% bibliography %}
+</div>

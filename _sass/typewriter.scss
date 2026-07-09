@@ -29,7 +29,6 @@ $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
   --photo-a: #f4f3df;
   --photo-b: #e9e8d2;
   --sheet-shadow: rgba(0, 0, 0, 0.5);
-  --desk-darken: rgba(0, 0, 0, 0);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,15 +45,18 @@ $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
     --photo-a: #33322c;
     --photo-b: #3d3c34;
     --sheet-shadow: rgba(0, 0, 0, 0.75);
-    --desk-darken: rgba(0, 0, 0, 0.72);
   }
 }
 
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
-html { font-size: 16px; }
+html {
+  font-size: 16px;
+}
 
 body {
   font-family: $serif;
@@ -62,7 +64,16 @@ body {
   line-height: 1.5;
   color: var(--ink);
   margin: 80px 0;
-  background: linear-gradient(var(--desk-darken), var(--desk-darken)), url("../images/bg.png");
+  background: url("../images/desk-linen.svg");
+}
+
+// The linen weave flattens to grey under a darkening overlay, so dark mode
+// gets its own tile. Must come after the body rule above: the `background`
+// shorthand there would otherwise reset this image.
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: url("../images/desk-linen-dark.svg");
+  }
 }
 
 // ---- Paper sheet + stacked pages ----
@@ -102,7 +113,10 @@ body {
 a:link,
 a:visited,
 a:active,
-a:hover { color: var(--ribbon); text-decoration: none; }
+a:hover {
+  color: var(--ribbon);
+  text-decoration: none;
+}
 
 :focus-visible {
   outline: 2px solid var(--ribbon);
@@ -110,13 +124,38 @@ a:hover { color: var(--ribbon); text-decoration: none; }
 }
 
 // ---- Uniform heading sizes (typewriters can't resize type) ----
-h1, h2, h3, h4, h5, h6 { font-size: 1em; line-height: 1.5; }
-h1 { text-transform: uppercase; font-weight: bold; text-decoration: underline; }
-h2 { font-weight: bold; text-decoration: underline; }
-h3 { font-weight: bold; }
-h4, h5, h6 { font-weight: bold; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em;
+  line-height: 1.1;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: underline;
+}
+h2 {
+  font-weight: bold;
+  text-decoration: underline;
+}
+h3 {
+  font-weight: bold;
+}
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
 
-p, ul, ol { margin: 0 0 1.5rem; }
+p,
+ul,
+ol {
+  margin: 0 0 1.5rem;
+}
 
 hr {
   border: 0;
@@ -124,7 +163,10 @@ hr {
   margin: 2.5rem 0;
 }
 
-code, pre { font-family: $mono; }
+code,
+pre {
+  font-family: $mono;
+}
 .highlight,
 pre,
 blockquote {
@@ -133,21 +175,30 @@ blockquote {
   border-left: 3px solid var(--ink);
   overflow-x: auto;
 }
-code { background: var(--code-bg); padding: 0.1rem 0.3rem; }
-pre code { background: none; padding: 0; }
+code {
+  background: var(--code-bg);
+  padding: 0.1rem 0.3rem;
+}
+pre code {
+  background: none;
+  padding: 0;
+}
 
 // ---- Centered header ----
 .site-header {
   text-align: center;
-  margin-bottom: 4.5rem;
+  margin-bottom: 2.9rem;
 }
 .site-title {
-  letter-spacing: 10px;
+  letter-spacing: 9.2px;
   margin: 0 0 0.6rem;
   text-decoration: none;
-  text-shadow: 1px 0 1px var(--title-shadow);
+  font-size: 1em;
+  // text-shadow: 1px 0 1px var(--title-shadow);
 }
-.site-title a { color: var(--title-link); }
+.site-title a {
+  color: var(--title-link);
+}
 .site-sub {
   margin: 0 0 1.5rem;
   color: var(--muted);
@@ -161,9 +212,15 @@ pre code { background: none; padding: 0; }
   list-style-type: none;
   padding-right: 10px;
 }
-.page-link { font-weight: bold; }
-a.page-link:hover { border-bottom: 4px solid var(--ribbon); }
-a.page-link[aria-current="page"] { border-bottom: 4px solid var(--ribbon); }
+.page-link {
+  font-weight: bold;
+}
+a.page-link:hover {
+  border-bottom: 4px solid var(--ribbon);
+}
+a.page-link[aria-current="page"] {
+  border-bottom: 4px solid var(--ribbon);
+}
 
 // ---- Footer ----
 .site-footer {
@@ -185,7 +242,13 @@ a.page-link[aria-current="page"] { border-bottom: 4px solid var(--ribbon); }
   width: 7rem;
   height: 7rem;
   border: 1px solid var(--ink);
-  background: repeating-linear-gradient(45deg, var(--photo-a), var(--photo-a) 6px, var(--photo-b) 6px, var(--photo-b) 12px);
+  background: repeating-linear-gradient(
+    45deg,
+    var(--photo-a),
+    var(--photo-a) 6px,
+    var(--photo-b) 6px,
+    var(--photo-b) 12px
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,21 +256,50 @@ a.page-link[aria-current="page"] { border-bottom: 4px solid var(--ribbon); }
   font-size: 0.75rem;
   text-align: center;
 }
-.intro .bio { flex: 1 1 16rem; }
-.intro .bio p:first-child { margin-top: 0; }
+.intro .bio {
+  flex: 1 1 16rem;
+}
+.intro .bio p:first-child {
+  margin-top: 0;
+}
 
 // ---- Publications list ----
+// Cap the bibliography at most of the viewport so a long list scrolls in
+// place instead of stretching the sheet several screens tall; the filter
+// chips and count stay in view above it. tabindex on the wrapper (see
+// publications.html) keeps the region keyboard-scrollable.
+.pub-scroll {
+  max-height: 70vh; // fallback for browsers without dvh
+  max-height: 70dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 1.5rem 0;
+  padding-right: 0.75rem; // keep text clear of the scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule) transparent;
+}
+.pub-scroll li:last-child {
+  border-bottom: 0;
+}
+
 ul.publications {
   list-style: none;
   margin: 1.5rem 0;
   padding: 0;
 }
+.pub-scroll ul.publications {
+  margin: 0;
+}
 ul.publications li {
   padding: 0.85rem 0;
   border-bottom: 1px solid var(--rule);
 }
-ul.publications li.is-hidden { display: none; }
-.pub { display: block; }
+ul.publications li.is-hidden {
+  display: none;
+}
+.pub {
+  display: block;
+}
 
 .abstract-toggle {
   font: inherit;
@@ -219,7 +311,10 @@ ul.publications li.is-hidden { display: none; }
   margin-top: 0.5rem;
   cursor: pointer;
 }
-.abstract-toggle:hover { border-color: var(--ribbon); color: var(--ribbon); }
+.abstract-toggle:hover {
+  border-color: var(--ribbon);
+  color: var(--ribbon);
+}
 .abstract-toggle[aria-expanded="true"] {
   background: var(--ribbon);
   color: var(--paper);
@@ -232,7 +327,9 @@ ul.publications li.is-hidden { display: none; }
   font-size: 0.92rem;
   color: var(--muted);
 }
-.abstract[hidden] { display: none; }
+.abstract[hidden] {
+  display: none;
+}
 
 // ---- BibTeX toggle + copy ----
 .bibtex-toggle {
@@ -246,8 +343,13 @@ ul.publications li.is-hidden { display: none; }
   margin-left: 0.4rem;
   cursor: pointer;
 }
-.abstract-toggle + .bibtex-toggle { margin-left: 0.4rem; }
-.bibtex-toggle:hover { border-color: var(--ribbon); color: var(--ribbon); }
+.abstract-toggle + .bibtex-toggle {
+  margin-left: 0.4rem;
+}
+.bibtex-toggle:hover {
+  border-color: var(--ribbon);
+  color: var(--ribbon);
+}
 .bibtex-toggle[aria-expanded="true"] {
   background: var(--ribbon);
   color: var(--paper);
@@ -257,7 +359,9 @@ ul.publications li.is-hidden { display: none; }
   position: relative;
   margin-top: 0.6rem;
 }
-.bibtex[hidden] { display: none; }
+.bibtex[hidden] {
+  display: none;
+}
 .bibtex pre {
   margin: 0;
   padding: 0.8rem 0.9rem;
@@ -287,9 +391,18 @@ ul.publications li.is-hidden { display: none; }
   border: 1px solid var(--rule);
   cursor: pointer;
 }
-.bibtex-copy:hover { color: var(--ribbon); border-color: var(--ribbon); }
-.bibtex-copy.is-copied { color: var(--paper); background: var(--ribbon); border-color: var(--ribbon); }
-.bibtex-copy[hidden] { display: none; }
+.bibtex-copy:hover {
+  color: var(--ribbon);
+  border-color: var(--ribbon);
+}
+.bibtex-copy.is-copied {
+  color: var(--paper);
+  background: var(--ribbon);
+  border-color: var(--ribbon);
+}
+.bibtex-copy[hidden] {
+  display: none;
+}
 
 .visually-hidden {
   position: absolute;
@@ -314,7 +427,9 @@ ul.publications li.is-hidden { display: none; }
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-.pub-controls[hidden] { display: none; }
+.pub-controls[hidden] {
+  display: none;
+}
 .chip,
 .sort-toggle {
   font: inherit;
@@ -326,13 +441,18 @@ ul.publications li.is-hidden { display: none; }
   cursor: pointer;
 }
 .chip:hover,
-.sort-toggle:hover { border-color: var(--ribbon); color: var(--ribbon); }
+.sort-toggle:hover {
+  border-color: var(--ribbon);
+  color: var(--ribbon);
+}
 .chip[aria-pressed="true"] {
   background: var(--ribbon);
   color: var(--paper);
   border-color: var(--ribbon);
 }
-.sort-toggle { margin-left: auto; }
+.sort-toggle {
+  margin-left: auto;
+}
 
 .pub-count {
   font-size: 0.85rem;
@@ -341,32 +461,73 @@ ul.publications li.is-hidden { display: none; }
 }
 
 // ---- Blog list ----
-.post-list { list-style: none; padding: 0; }
+.post-list {
+  list-style: none;
+  padding: 0;
+}
 .post-list > li {
   margin: 0 0 3rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--rule);
 }
-.post-list > li:last-child { border-bottom: 0; }
-.post-list li p { margin: 0.4rem 0 0; color: var(--ink); }
-.post-meta { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.3rem; }
-.post-link { margin: 0; font-size: 1.25rem; line-height: 1.3; }
-.post-link a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
-.post-link a:hover { border-bottom-color: var(--ink); }
-.post-title { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.5rem; }
-.page-title { font-size: 1.6rem; line-height: 1.25; margin: 0 0 1.5rem; }
-.post-back { margin-top: 3rem; }
+.post-list > li:last-child {
+  border-bottom: 0;
+}
+.post-list li p {
+  margin: 0.4rem 0 0;
+  color: var(--ink);
+}
+.post-meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.3rem;
+}
+.post-link {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+.post-link a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.post-link a:hover {
+  border-bottom-color: var(--ink);
+}
+.post-title {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+.page-title {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin: 0 0 1.5rem;
+}
+.post-back {
+  margin-top: 3rem;
+}
 
 // ---- 404 ----
-.error-page { text-align: center; padding: 3rem 0; }
+.error-page {
+  text-align: center;
+  padding: 3rem 0;
+}
 
 // ---- Small screens: collapse the heavy page margins ----
 @media (max-width: 40rem) {
-  body { margin: 24px 0; }
+  body {
+    margin: 24px 0;
+  }
   .wrap {
     width: 92%;
     padding: 2.5rem 1.5rem;
   }
-  .site-title { letter-spacing: 6px; }
-  .sort-toggle { margin-left: 0; }
+  .site-title {
+    letter-spacing: 6px;
+  }
+  .sort-toggle {
+    margin-left: 0;
+  }
 }

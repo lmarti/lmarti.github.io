@@ -23,6 +23,7 @@
   var chips = Array.prototype.slice.call(controls.querySelectorAll(".chip"));
   var sortBtn = controls.querySelector(".sort-toggle");
   var countEl = document.querySelector(".pub-count");
+  var scroller = document.querySelector(".pub-scroll");
 
   var activeFilter = "all";
   var newestFirst = true;
@@ -57,6 +58,7 @@
     chip.addEventListener("click", function () {
       activeFilter = chip.getAttribute("data-filter");
       applyFilter();
+      if (scroller) scroller.scrollTop = 0;
     });
   });
 
@@ -64,6 +66,7 @@
     sortBtn.addEventListener("click", function () {
       newestFirst = !newestFirst;
       applySort();
+      if (scroller) scroller.scrollTop = 0;
     });
   }
 

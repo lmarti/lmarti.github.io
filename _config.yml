@@ -16,19 +16,19 @@ plugins:
 nav:
   - title: Home
     url: /
-  - title: Publications
-    url: /publications/
   - title: CV
     url: /cv/
+  - title: Publications
+    url: /publications/
   - title: Blog
     url: /blog/
   - title: Contact
     url: /contact/
 
-# jekyll-scholar: render _bibliography/luis.bib server-side into /publications/.
+# jekyll-scholar: render luis.bib + truquis.bib (not nayat.bib) server-side into /publications/.
 scholar:
-  source: _bibliography
-  bibliography: luis.bib
+  source: _bibliography/pubs/
+  bibliography: "**/{luis,truquis}.bib"
   bibliography_template: bibliography
   style: apa
   sort_by: year
