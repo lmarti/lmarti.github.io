@@ -1771,3 +1771,21 @@
       url={https://arxiv.org/abs/2605.30371},
       abstract={We address the issue of global convergence in stochastic continuous optimization. For that purpose, we formulate the Canonical Evolutionary Strategy (CES) as a controlled mathematical framework to analyze global convergence in evolutionary algorithms via the semiclassical limit of a Schr{ö}dinger-type replicator-mutator equation. We provide a rigorous hierarchy from a discrete individual-based dynamics to a deterministic mean-field limit, demonstrating that global convergence is governed by the principal eigenfunction of the underlying operator. This property, defined as Geometric Selection, naturally prioritizes robust, flat optima over narrow local traps, offering a mathematical justification for the ``survival of the flattest'' phenomenon. Moreover, unlike consensus-driven methods that are prone to premature variance collapse when the global minimizer resides outside the initial support, the replicator-mutator dynamics of CES facilitate intrinsic mass transport. High-dimensional benchmarks (d = 30) confirm this advantage, showing that CES achieves lower residual errors in shifted initialization scenarios where standard consensus-driven and gradient-based methods fail to migrate effectively. By shifting the focus from point-wise consensus to spectral concentration, our framework provides a robust theoretical foundation for global convergence in Evolution Strategies (ES) without the need for additional numerical heuristics.}
 }
+
+@inproceedings{10.1145/3795095.3805119,
+author = {Lira, Hernan and Mart\'{\i}, Luis and Sanchez-Pi, Nayat},
+title = {Prior-Informed Symbolic Regression for Multiview Scientific Discovery},
+year = {2026},
+isbn = {9798400724879},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3795095.3805119},
+doi = {10.1145/3795095.3805119},
+abstract = {Scientific modeling often requires discovering mathematical relationships that generalize across multiple related datasets while capturing context-specific deviations. We present a multiview symbolic regression method that decomposes predictions into a shared core equation and view-specific residual corrections. Through systematic ablation studies, we identify domain-informed initialization as the critical success factor: seeding the evolutionary population with common scientific building blocks (polynomials, trigonometric functions, and rational expressions) improves performance by two orders of magnitude compared to random initialization. The multiview decomposition is optimized via NSGA-II with three objectives: prediction accuracy, core complexity, and residual complexity. Additional mechanisms, including elite protection and motif-based enhancement provide consistent but marginal gains. We evaluate our approach on synthetic benchmarks with known ground-truth decompositions and on oceanographic data modeling microbial metabolism across depth layers. On the ocean dataset, our method achieves 99\% lower mean squared error than standard multiview symbolic regression, gradient boosting, and neural baselines across 50 prediction targets, while producing interpretable equations that reveal temperature and oxygen as dominant environmental drivers. Our results demonstrate that effective multiview symbolic regression depends more on appropriate initialization of the search space than on sophisticated search operators.},
+booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
+pages = {790–798},
+numpages = {9},
+keywords = {symbolic regression, multiview learning, evolutionary computing},
+location = {Centro Internacional de Convenciones CIC-ANDE, San Jose, Costa Rica},
+series = {GECCO '26}
+}
