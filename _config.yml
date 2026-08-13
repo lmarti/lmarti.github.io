@@ -1,9 +1,54 @@
 title: Luis Martí
-email: luis_marti@dkl.digital
+email: lmarti@gmail.com
+# Motto: shown under the site title in the header (display only, see header.html).
+motto: >-
+  Making the world a better place, one epoch at a time.
+# Description: default meta description for search snippets (jekyll-seo-tag);
+# pages can override it with a `description:` in their front matter.
 description: >-
-  Personal academic site of Luis Martí — research, publications, and CV.
-url: "https://lmarti.github.io"
+  Luis Martí is an AI scientist — Science Director, Chief Science Officer at Docugami, and Adjunct Professor. 
+  He works on System 2 AI, neuro-symbolic
+  reasoning, machine learning, and evolutionary multi-objective optimization.
+# Tagline: appended to the home page <title> by jekyll-seo-tag.
+tagline: AI/ML Scientist 
+url: "https://lmarti.com"
 baseurl: ""
+lang: en
+
+# Structured-data identity (jekyll-seo-tag + _includes/person-jsonld.html).
+author:
+  name: Luis Martí
+
+# Canonical profile list — the single source for the home-page glyph row
+# (entries with an `icon:`, see _includes/profile-glyphs.html), the footer
+# colophon, the contact page, llms.txt, and the Person JSON-LD `sameAs`.
+# Only verified URLs belong here.
+profiles:
+  - name: LinkedIn
+    icon: linkedin
+    url: https://www.linkedin.com/in/luismarti/
+  - name: GitHub
+    icon: github
+    url: https://github.com/lmarti
+  - name: Google Scholar
+    icon: scholar
+    url: https://scholar.google.com/citations?user=rT0Cow8AAAAJ
+  - name: Semantic Scholar
+    icon: s2
+    url: https://www.semanticscholar.org/author/Luis-Mart%C3%AD/145069856
+  - name: ORCID
+    icon: orcid
+    url: https://orcid.org/0000-0003-2789-5062
+  - name: DBLP
+    icon: dblp
+    url: https://dblp.org/pid/46/4895.html
+  #- name: OpenReview
+  #  url: https://openreview.net/profile?id=~Luis_Mart%C3%AD1
+  #- name: ResearchGate
+  #  url: https://www.researchgate.net/profile/Luis-Marti-2
+  #- name: Inria Chile
+  #  url: https://www.inria.cl/en/luis-marti
+# logo: /assets/images/luis-marti.jpg  # uncomment once a headshot exists; used as og:image fallback
 
 highlighter: rouge
 markdown: kramdown
@@ -11,19 +56,22 @@ permalink: /:year/:month/:day/:title/
 
 plugins:
   - jekyll-scholar
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
 
 # Internal site navigation (renamed from upstream typewriter `links:` per D003).
 nav:
-  - title: Home
+  - title: Intro
     url: /
-  - title: CV
+  - title: About me
     url: /cv/
   - title: Publications
     url: /publications/
-  - title: Blog
+  - title: Thoughts
     url: /blog/
-  - title: Contact
-    url: /contact/
+#  - title: Contact
+#    url: /contact/
 
 # jekyll-scholar: render luis.bib + truquis.bib (not nayat.bib) server-side into /publications/.
 scholar:

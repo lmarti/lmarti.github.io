@@ -1,0 +1,5 @@
+# Liquid-heavy template: generic HTML formatters treat {% ... %} tags as plain
+# text and re-flow them into unreadable run-on lines (one pass even injected a
+# stray </li> by misreading a tag mentioned inside a Liquid comment). Keep the
+# formatter away from it; its Liquid preamble is hand-formatted.
+_layouts/bibliography.html

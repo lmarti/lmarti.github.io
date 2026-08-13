@@ -1,14 +1,25 @@
 ---
 layout: page
-title: Blog
+title: Thoughts
 permalink: /blog/
+hide_title: true
+description: >-
+  Notes and essays by Luis Martí on artificial intelligence, machine
+  learning, and research.
 ---
+
 {% if site.posts.size > 0 %}
 <ul class="post-list">
   {%- for post in site.posts -%}
   <li>
-    <p class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time></p>
-    <h2 class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p class="post-meta">
+      <time datetime="{{ post.date | date_to_xmlschema }}"
+        >{{ post.date | date: "%B %-d, %Y" }}</time
+      >
+    </p>
+    <h2 class="post-link">
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
     {%- if post.excerpt -%}{{ post.excerpt }}{%- endif -%}
   </li>
   {%- endfor -%}

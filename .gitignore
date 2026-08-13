@@ -39,3 +39,4 @@ tmp/
 .agents/
 .cate/
 skills-lock.json
+.claude

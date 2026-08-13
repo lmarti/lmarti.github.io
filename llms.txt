@@ -1,0 +1,34 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+# Luis Martí
+
+> Personal site of Luis Martí, an AI scientist: Science Director of the
+> Inria Chile Research Center (the Chilean center of Inria, the French
+> National Institute for Research in Digital Science and Technology),
+> Chief Science Officer at Docugami, Inc., and Adjunct Professor at the
+> Institute of Astrophysical Studies, Universidad Diego Portales.
+
+His research focuses on System 2 AI and neuro-symbolic "agentic" reasoning,
+causality, natural language understanding, human-AI cooperation, active
+learning, conformal prediction and underspecification, multi-modal and
+multi-task learning, physics-informed machine learning, nature-inspired
+metaheuristics, and evolutionary multi-objective optimization. He applies
+this research to document understanding, astronomy and astrophysics,
+climate modeling, ocean ecology, energy, mining, and smart agriculture.
+
+## Pages
+
+- [About / CV]({{ site.url }}/cv/): appointments, education, awards, research projects, and service
+- [Publications]({{ site.url }}/publications/): full list of journal articles, conference papers, books, chapters, patents, and reports
+- [Blog]({{ site.url }}/blog/): notes and essays
+- [Contact]({{ site.url }}/contact/): how to reach him
+- [Full CV (PDF)]({{ site.url }}/docs/cv.pdf)
+
+## Profiles
+
+{% for p in site.profiles -%}
+- {{ p.name }}: {{ p.url }}
+{% endfor %}

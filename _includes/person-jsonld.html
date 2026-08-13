@@ -1,0 +1,66 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ site.url }}/#person",
+  "name": "Luis Martí",
+  "givenName": "Luis",
+  "familyName": "Martí",
+  "honorificPrefix": "Dr.",
+  "url": "{{ site.url }}/",
+  "email": "mailto:{{ site.email }}",
+  "description": {{ site.description | strip_newlines | strip | jsonify }},
+  "jobTitle": [
+    "Science Director",
+    "Chief Science Officer",
+    "Adjunct Professor"
+  ],
+  "worksFor": [
+    {
+      "@type": "ResearchOrganization",
+      "name": "Inria Chile Research Center",
+      "url": "https://www.inria.cl/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Docugami",
+      "url": "https://www.docugami.com/"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidad Diego Portales",
+      "url": "https://www.udp.cl/"
+    }
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidad Carlos III de Madrid",
+      "url": "https://www.uc3m.es/"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidad de La Habana"
+    }
+  ],
+  "knowsAbout": [
+    "Artificial intelligence",
+    "Machine learning",
+    "System 2 AI",
+    "Neuro-symbolic reasoning",
+    "Agentic AI",
+    "Causality",
+    "Natural language understanding",
+    "Conformal prediction",
+    "Physics-informed machine learning",
+    "Evolutionary multi-objective optimization",
+    "AI for science"
+  ],
+  "knowsLanguage": ["es", "en", "pt"],
+  "mainEntityOfPage": {
+    "@type": "ProfilePage",
+    "@id": "{{ site.url }}/"
+  },
+  "sameAs": {{ site.profiles | map: "url" | jsonify }}
+}
+</script>

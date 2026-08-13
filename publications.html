@@ -3,11 +3,18 @@ layout: page
 title: Publications
 hide_title: true
 permalink: /publications/
+description: >-
+  Scientific publications by Luis Martí — journal articles, conference
+  papers, books, chapters, patents, and technical reports on AI, machine
+  learning, and evolutionary optimization.
 ---
 
 <div class="pub-controls" hidden>
   <button class="chip" type="button" data-filter="all" aria-pressed="true">
-    All
+    all
+  </button>
+  <button class="chip" type="button" data-filter="article" aria-pressed="false">
+    journals
   </button>
   <button
     class="chip"
@@ -15,13 +22,10 @@ permalink: /publications/
     data-filter="inproceedings"
     aria-pressed="false"
   >
-    Conferences
+    conferences
   </button>
-  <button class="chip" type="button" data-filter="article" aria-pressed="false">
-    Journal
-  </button>
-  <button class="chip" type="button" data-filter="patent" aria-pressed="false">
-    Patents
+  <button class="chip" type="button" data-filter="book" aria-pressed="false">
+    books
   </button>
   <button
     class="chip"
@@ -29,10 +33,13 @@ permalink: /publications/
     data-filter="incollection"
     aria-pressed="false"
   >
-    Book chapters
+    chapters
   </button>
-  <button class="chip" type="button" data-filter="book" aria-pressed="false">
-    Book
+  <button class="chip" type="button" data-filter="edited" aria-pressed="false">
+    edited
+  </button>
+  <button class="chip" type="button" data-filter="patent" aria-pressed="false">
+    patents
   </button>
   <button
     class="chip"
@@ -40,14 +47,11 @@ permalink: /publications/
     data-filter="techreport"
     aria-pressed="false"
   >
-    Reports and preprints
+    reports/preprints
   </button>
-  <button class="sort-toggle" type="button" aria-pressed="false">
-    Sort: Newest first
-  </button>
+  <p class="pub-count" aria-live="polite"></p>
+  <button class="sort-toggle" type="button" aria-pressed="false">⬇Date</button>
 </div>
-
-<p class="pub-count" aria-live="polite"></p>
 
 <div class="pub-scroll" role="region" aria-label="Publications" tabindex="0">
   {% bibliography %}

@@ -1,9 +1,11 @@
-// Faithful port of alixedi/typewriter.
+// "Second Draft" — a matured take on the alixedi/typewriter port.
 // Signature devices preserved: cream paper sheet on a textured desk, stacked
-// rotated pages behind it, red typewriter-ribbon ink, uniform heading sizes,
-// and a letter-spaced, lightly-inked title. Padding/measure are widened from
-// the original 400px/200px so a publications + CV site stays readable, and
-// collapse on small screens — the only deviations from a verbatim copy.
+// rotated pages behind it, red typewriter-ribbon ink, and a letter-spaced
+// title. Deliberate deviations from the original: a five-step type scale
+// (spaced small caps for section headings instead of underlines — underlines
+// belong to links), hanging-indent references with year landmarks, and quiet
+// text toggles instead of bordered buttons. The ribbon red is arXiv's
+// #b31b1b; paper and ink are warmed one step.
 
 $mono: monospace;
 $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
@@ -15,37 +17,57 @@ $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
 // light/dark preference via prefers-color-scheme. Light is the default;
 // the dark palette keeps the typewriter feel — warm dark "paper", warm
 // off-white ink, and a brighter ribbon red that stays legible on dark.
+// The sun/moon nav buttons (ui-controls.js) can force a theme by stamping
+// data-theme="light|dark" on <html>; the mixin below keeps the dark values
+// in one place for both the system path and the forced path.
+@mixin dark-palette {
+  --paper: #26251f;
+  --ink: #eae8da;
+  --ribbon: #ff7a6b;
+  --muted: #a09c8c;
+  --rule: #444135;
+  --title-link: #f1efe3;
+  --title-shadow: #000;
+  --code-bg: rgba(255, 255, 255, 0.08);
+  --bibtex-bg: #1f1e18;
+  --photo-a: #33322c;
+  --photo-b: #3d3c34;
+  --sheet-shadow: rgba(0, 0, 0, 0.75);
+}
+
 :root {
   color-scheme: light dark;
-  --paper: #ffe;
-  --ink: #222;
-  --ribbon: #c00;
-  --muted: #6b6b6b;
-  --rule: #cdcdc4;
-  --title-link: #000;
+  --paper: #f5f3f0;  //#fffef4
+  --ink: #26241f;
+  --ribbon: #b31b1b;
+  --muted: #6e6a5e;
+  --rule: #d8d4c2;
+  --title-link: #1e1c18;
   --title-shadow: #444;
   --code-bg: rgba(0, 0, 0, 0.05);
-  --bibtex-bg: #f7f6e8;
+  --bibtex-bg: #f9f7ea;
   --photo-a: #f4f3df;
   --photo-b: #e9e8d2;
   --sheet-shadow: rgba(0, 0, 0, 0.5);
 }
 
+// System dark — unless the visitor forced light with the sun button.
 @media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #272723;
-    --ink: #e9e7db;
-    --ribbon: #ff6f61;
-    --muted: #9c9a8d;
-    --rule: #45453d;
-    --title-link: #f1efe3;
-    --title-shadow: #000;
-    --code-bg: rgba(255, 255, 255, 0.08);
-    --bibtex-bg: #1f1f1c;
-    --photo-a: #33322c;
-    --photo-b: #3d3c34;
-    --sheet-shadow: rgba(0, 0, 0, 0.75);
+  :root:not([data-theme="light"]) {
+    @include dark-palette;
   }
+}
+// Forced dark via the moon button.
+:root[data-theme="dark"] {
+  @include dark-palette;
+}
+// Pin color-scheme when a theme is forced so UA widgets (scrollbars, form
+// controls) match the page instead of the OS setting.
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 *,
@@ -69,18 +91,25 @@ body {
 
 // The linen weave flattens to grey under a darkening overlay, so dark mode
 // gets its own tile. Must come after the body rule above: the `background`
-// shorthand there would otherwise reset this image.
+// shorthand there would otherwise reset this image. Same system/forced
+// split as the palette.
 @media (prefers-color-scheme: dark) {
-  body {
+  :root:not([data-theme="light"]) body {
     background-image: url("../images/desk-linen-dark.svg");
   }
+}
+:root[data-theme="dark"] body {
+  background-image: url("../images/desk-linen-dark.svg");
 }
 
 // ---- Paper sheet + stacked pages ----
 .wrap {
   position: relative;
-  width: 88%;
-  max-width: 46rem;
+  // The sheet is 65% of the browser. Readability floor: it never renders
+  // narrower than the 40rem reading measure, and once even that won't fit
+  // it takes 88% of the screen (92% under the mobile breakpoint) instead.
+  width: 65%;
+  min-width: min(40rem, 88%);
   margin: 0 auto;
   padding: 5rem 4rem;
   background: var(--paper);
@@ -117,13 +146,29 @@ a:hover {
   color: var(--ribbon);
   text-decoration: none;
 }
-
-:focus-visible {
-  outline: 2px solid var(--ribbon);
-  outline-offset: 2px;
+// Links show the underline the theme reserves for them on hover. The header
+// title and nav opt out below — they carry their own hover marks.
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.site-title a:hover,
+a.page-link:hover,
+.post-link a:hover,
+.colophon a:hover,
+.glyphrow a:hover {
+  text-decoration: none;
 }
 
-// ---- Uniform heading sizes (typewriters can't resize type) ----
+:focus-visible {
+  outline: 1px solid var(--ribbon);
+  outline-offset: 1px;
+}
+
+// ---- Headings: the typist's hierarchy ----
+// Typists made hierarchy with spacing and capitals, not size. Section
+// headings are spaced small caps with a short ribbon tick — never underlined,
+// because on this site underline means "link". Only page titles get big.
 h1,
 h2,
 h3,
@@ -136,11 +181,24 @@ h6 {
 h1 {
   text-transform: uppercase;
   font-weight: bold;
-  text-decoration: underline;
 }
-h2 {
+h2:not(.post-link) {
+  font-size: 0.95rem;
   font-weight: bold;
-  text-decoration: underline;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  font-variant: titling-caps;
+  margin: 2.4rem 0 1.1rem;
+}
+h2:not(.post-link)::after {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  border-top: 1px solid var(--ribbon);
+  margin-top: 0.4rem;
+}
+h2.post-link {
+  font-weight: bold;
 }
 h3 {
   font-weight: bold;
@@ -154,13 +212,13 @@ h6 {
 p,
 ul,
 ol {
-  margin: 0 0 1.5rem;
+  margin: 0 0 1.1rem;
 }
 
 hr {
   border: 0;
   border-top: 1px solid var(--rule);
-  margin: 2.5rem 0;
+  margin: 1.1rem 0;
 }
 
 code,
@@ -190,10 +248,11 @@ pre code {
   margin-bottom: 2.9rem;
 }
 .site-title {
-  letter-spacing: 9.2px;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em; // recenter: tracking adds a trailing gap
   margin: 0 0 0.6rem;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1.5rem;
   // text-shadow: 1px 0 1px var(--title-shadow);
 }
 .site-title a {
@@ -202,6 +261,7 @@ pre code {
 .site-sub {
   margin: 0 0 1.5rem;
   color: var(--muted);
+  font-style: italic;
 }
 .navlist {
   margin: 0;
@@ -210,24 +270,115 @@ pre code {
 .navlist > li {
   display: inline;
   list-style-type: none;
-  padding-right: 10px;
+  padding-right: 14px;
+}
+.navlist > li:last-child {
+  padding-right: 0; // the flex gap on .site-nav spaces the tools divider
 }
 .page-link {
   font-weight: bold;
+  font-size: 0.78rem;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  font-variant: petite-caps;
+}
+a.page-link:link,
+a.page-link:visited {
+  color: var(--ink);
 }
 a.page-link:hover {
-  border-bottom: 4px solid var(--ribbon);
+  color: var(--ribbon);
+  border-bottom: 1px solid var(--ribbon);
+  padding-bottom: 1px;
 }
 a.page-link[aria-current="page"] {
-  border-bottom: 4px solid var(--ribbon);
+  color: var(--ribbon);
+  border-bottom: 1px solid var(--ribbon);
+  padding-bottom: 1px;
+}
+
+// Reader tools next to the nav links: text size and light/dark. Icon-only
+// buttons that whisper like the rest of the chrome — muted ink, ribbon on
+// hover, ribbon when a forced theme is active (aria-pressed).
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+}
+.nav-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-left: 1px solid var(--rule);
+  padding-left: 1rem;
+}
+.nav-tools[hidden] {
+  display: none;
+}
+.nav-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.nav-tool:hover {
+  color: var(--ribbon);
+}
+.nav-tool[aria-pressed="true"] {
+  color: var(--ribbon);
 }
 
 // ---- Footer ----
 .site-footer {
-  margin-top: 6rem;
+  margin-top: 3rem;
   text-align: center;
   color: var(--muted);
   font-size: 0.85rem;
+}
+// Colophon: profile links in the nav's petite-caps voice but muted, so the
+// row whispers until hovered. Flex, not inline: Liquid trims the whitespace
+// between the <li>s, so inline items would have no break opportunity and
+// overflow the sheet — flex wraps between items regardless. Dot separators
+// ride ::after of the preceding item so a wrapped line ends "Name ·" (the
+// running-text convention) instead of opening with a stray dot.
+.colophon {
+  margin: 0 0 0.4rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 0.55rem;
+  row-gap: 0.2rem;
+}
+.colophon li {
+  white-space: nowrap;
+}
+.colophon li:not(:last-child)::after {
+  content: "·";
+  color: var(--muted);
+  padding-left: 0.55rem;
+}
+.colophon a {
+  font-weight: bold;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-variant: petite-caps;
+  color: var(--muted);
+}
+.colophon a:hover {
+  color: var(--ribbon);
+  border-bottom: 1px solid var(--ribbon);
+  padding-bottom: 1px;
 }
 
 // ---- Home ----
@@ -247,7 +398,7 @@ a.page-link[aria-current="page"] {
     var(--photo-a),
     var(--photo-a) 6px,
     var(--photo-b) 6px,
-    var(--photo-b) 12px
+    var(--photo-b) 11px
   );
   display: flex;
   align-items: center;
@@ -262,6 +413,45 @@ a.page-link[aria-current="page"] {
 .intro .bio p:first-child {
   margin-top: 0;
 }
+// "Elsewhere" close of the bio: brand-mark links (see
+// _includes/profile-glyphs.html) set off by a hairline. The marks are
+// fill:currentColor, so the muted/ribbon states and both palettes come from
+// the link color alone.
+.bio-elsewhere {
+  margin-top: 1.05rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.05rem;
+}
+.bio-elsewhere .lede {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.glyphrow {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.05rem;
+}
+.glyphrow a {
+  color: var(--muted);
+  display: inline-flex;
+  padding: 0.1rem; // a little extra hit area
+}
+.glyphrow a:hover {
+  color: var(--ribbon);
+}
+.glyphrow svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
+}
 
 // ---- Publications list ----
 // Cap the bibliography at most of the viewport so a long list scrolls in
@@ -273,8 +463,14 @@ a.page-link[aria-current="page"] {
   max-height: 70dvh;
   overflow-y: auto;
   overscroll-behavior: contain;
-  margin: 1.5rem 0;
-  padding-right: 0.75rem; // keep text clear of the scrollbar
+  margin: 1rem 0;
+  padding-right: 0.38rem; // keep text clear of the scrollbar
+  // Year-landmark gutter: the padding keeps the markers inside the scrollport
+  // (overflow would clip them outside it), and the negative margin cancels the
+  // indent so entries sit at the text edge and markers hang into the sheet
+  // padding — same alignment as the home-page list, which has no scroller.
+  padding-left: 3rem;
+  margin-left: -3rem;
   scrollbar-width: thin;
   scrollbar-color: var(--rule) transparent;
 }
@@ -284,41 +480,105 @@ a.page-link[aria-current="page"] {
 
 ul.publications {
   list-style: none;
-  margin: 1.5rem 0;
+  margin: 0rem 0;
   padding: 0;
 }
 .pub-scroll ul.publications {
   margin: 0;
 }
 ul.publications li {
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--rule);
+  position: relative; // anchors the year landmark
+  padding: 0.38rem 0;
+  // border-bottom: 1px solid var(--rule);
 }
 ul.publications li.is-hidden {
   display: none;
 }
 .pub {
-  display: block;
+  // Inline so the abstract/bibtex toggles flow on after the reference text
+  // instead of dropping to their own line.
+  display: inline;
+  // padding-left: 1.4rem; // APA hanging indent: author names form the left edge
+  // text-indent: -1.4rem;
+  line-height: 1.25;
 }
 
-.abstract-toggle {
-  font: inherit;
-  font-size: 0.8rem;
-  color: var(--ink);
+// Compact identifier links (arXiv:…, doi:…) swapped in for bare URLs by
+// publications.js.
+.pub-id {
+  font-family: $mono;
+  font-size: 0.83em;
+}
+
+// Stamped-tag recipe shared by the per-entry type pill and the filter
+// controls (see .chip below), so both speak one visual language: tiny
+// uppercase mono in a thin rounded rule-colored border.
+%stamp-pill {
+  display: inline-block;
+  font-family: $mono;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0 0.5rem;
+  white-space: nowrap;
+}
+
+// Type pill leading each reference: the entry's category (journal,
+// conference…) in the chips' vocabulary, stamped quietly ahead of the text.
+.pub-tag {
+  @extend %stamp-pill;
+  vertical-align: 0.12em;
+  margin-right: 0.15rem;
+}
+
+// Year landmark, injected by publications.js on the first entry of each year.
+// Hangs in the left gutter (sheet padding on the home page, the .pub-scroll
+// padding on /publications/ — inside the scrollport, so it never clips).
+.pub-year {
+  position: absolute;
+  left: -3rem;
+  top: 0.65rem;
+  font-family: $mono;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+// Quiet text toggles: dotted-underline spaced caps, so 144 entries carry
+// whispers instead of 288 bordered boxes. State = solid ribbon underline.
+.abstract-toggle,
+.bibtex-toggle {
+  // `font-family`, not the `font:` shorthand — the shorthand without a size is
+  // invalid and gets dropped, leaving the button in the UA's default Arial.
+  //font-family: $mono;
+  //font-size: 0.68rem;
+  // Buttons don't inherit line metrics; tighten so the dotted underline hugs
+  // the label instead of hanging below the text baseline it sits next to.
+  line-height: 1;
+  vertical-align: baseline;
+  //letter-spacing: 0.12em;
+  // text-transform: uppercase;
+  font-variant: small-caps;
+  color: var(--muted);
   background: transparent;
-  border: 1px solid var(--ink);
-  padding: 0.1rem 0.5rem;
-  margin-top: 0.5rem;
+  border: 0;
+  border-bottom: 1px dotted var(--muted);
+  padding: 1;
+  // margin-top: 0.5rem;
+  // margin-left: 1.4rem; // align with the hanging-indent text edge
   cursor: pointer;
 }
 .abstract-toggle:hover {
-  border-color: var(--ribbon);
+  border-bottom-color: var(--ribbon);
   color: var(--ribbon);
 }
 .abstract-toggle[aria-expanded="true"] {
-  background: var(--ribbon);
-  color: var(--paper);
-  border-color: var(--ribbon);
+  color: var(--ribbon);
+  border-bottom: 1px solid var(--ribbon);
 }
 .abstract {
   margin-top: 0.6rem;
@@ -332,28 +592,33 @@ ul.publications li.is-hidden {
 }
 
 // ---- BibTeX toggle + copy ----
-.bibtex-toggle {
-  font: inherit;
-  font-size: 0.8rem;
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--ink);
-  padding: 0.1rem 0.5rem;
-  margin-top: 0.5rem;
-  margin-left: 0.4rem;
-  cursor: pointer;
-}
+// .bibtex-toggle {
+//   //font-family: $mono; // real declaration; `font: $mono` shorthand is invalid
+//   // font-size: 0.68rem;
+//   line-height: 1; // keep the dotted underline snug under the label
+//   vertical-align: baseline;
+//   letter-spacing: 0.12em;
+//   text-transform: uppercase;
+//   //font-variant: small-caps;
+//   color: var(--muted);
+//   background: transparent;
+//   border: 0;
+//   border-bottom: 1px dotted var(--muted);
+//   padding: 0;
+//   // margin-top: 0.5rem;
+//   //margin-left: 1.4rem;
+//   cursor: pointer;
+// }
 .abstract-toggle + .bibtex-toggle {
-  margin-left: 0.4rem;
+  margin-left: 0rem;
 }
 .bibtex-toggle:hover {
-  border-color: var(--ribbon);
+  border-bottom-color: var(--ribbon);
   color: var(--ribbon);
 }
 .bibtex-toggle[aria-expanded="true"] {
-  background: var(--ribbon);
-  color: var(--paper);
-  border-color: var(--ribbon);
+  color: var(--ribbon);
+  border-bottom: 1px solid var(--ribbon);
 }
 .bibtex {
   position: relative;
@@ -375,6 +640,33 @@ ul.publications li.is-hidden {
   line-height: 1.45;
   color: var(--ink);
   white-space: pre;
+}
+// The {% highlight %} tag wraps the pre in <figure class="highlight">; strip
+// the site-wide code-block dressing (margin, padding, ink border) so only the
+// .bibtex pre frame above shows.
+.bibtex .highlight {
+  margin: 0;
+  padding: 0;
+  border-left: 0;
+  overflow: visible; // the pre scrolls horizontally, not the figure
+}
+// Rouge token inks for BibTeX, in the theme's palette (works in both modes
+// via the custom properties).
+.bibtex .nc {
+  color: var(--ribbon); // entry type: @article, @inproceedings, …
+}
+.bibtex .nl {
+  color: var(--ink); // citation key
+  font-weight: bold;
+}
+.bibtex .na {
+  color: var(--muted); // field names: author, title, year, …
+}
+.bibtex .p {
+  color: var(--muted); // braces, equals, commas
+}
+.bibtex .s {
+  color: var(--ink); // field values
 }
 .bibtex-copy {
   position: absolute;
@@ -421,7 +713,9 @@ ul.publications li.is-hidden {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem;
+  // Pills carry their own borders, so a tighter gap than the old link-style
+  // chips needed still reads as separate stamps.
+  gap: 0.5rem 0.55rem;
   margin: 1.5rem 0;
   padding: 0.6rem 0;
   border-top: 1px solid var(--rule);
@@ -430,24 +724,25 @@ ul.publications li.is-hidden {
 .pub-controls[hidden] {
   display: none;
 }
+// Filters wear the entries' type-pill dress (%stamp-pill) so the control row
+// and the tags on the list below share one visual language. A touch more type
+// size and padding for comfortable click targets; the active filter (and
+// hover) takes the ribbon, echoing the nav's current-page red.
 .chip,
 .sort-toggle {
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--ink);
+  @extend %stamp-pill;
+  font-size: 0.68rem;
+  padding: 0.12rem 0.6rem;
   background: transparent;
-  border: 1px solid var(--ink);
-  padding: 0.2rem 0.6rem;
   cursor: pointer;
 }
 .chip:hover,
 .sort-toggle:hover {
-  border-color: var(--ribbon);
-  color: var(--ribbon);
+  color: var(--ink);
+  border-color: var(--muted);
 }
 .chip[aria-pressed="true"] {
-  background: var(--ribbon);
-  color: var(--paper);
+  color: var(--ribbon);
   border-color: var(--ribbon);
 }
 .sort-toggle {
@@ -455,9 +750,12 @@ ul.publications li.is-hidden {
 }
 
 .pub-count {
-  font-size: 0.85rem;
+  font-family: $mono;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
   color: var(--muted);
-  margin: 0 0 1.5rem;
+  // Drop the default <p> margin that pushed it off-center in the flex row.
+  margin: 0;
 }
 
 // ---- Blog list ----
@@ -525,9 +823,26 @@ ul.publications li.is-hidden {
     padding: 2.5rem 1.5rem;
   }
   .site-title {
-    letter-spacing: 6px;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
   }
   .sort-toggle {
     margin-left: 0;
+  }
+  // When the nav wraps, the reader tools land on their own line; the
+  // divider would float as an orphaned tick, so drop it.
+  .nav-tools {
+    border-left: 0;
+    padding-left: 0;
+  }
+  // No room to hang the year in a gutter — run it in above the entry.
+  .pub-scroll {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .pub-year {
+    position: static;
+    display: block;
+    margin-bottom: 0.3rem;
   }
 }

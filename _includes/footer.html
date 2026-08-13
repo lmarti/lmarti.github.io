@@ -1,3 +1,8 @@
 <footer class="site-footer">
-  <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}. Built with Jekyll.</p>
+  <ul class="colophon">
+    {%- for p in site.profiles -%}
+    <li><a href="{{ p.url }}">{{ p.name }}</a></li>
+    {%- endfor -%}
+  </ul>
+  <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}.</p>
 </footer>

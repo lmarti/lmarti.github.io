@@ -1,9 +1,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- assign page_title = page.title -%}
-  <title>{% if page_title %}{{ page_title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{{ page.description | default: site.description | strip_newlines }}">
+  {%- comment -%} jekyll-seo-tag renders <title>, meta description, canonical
+  URL, Open Graph/Twitter cards, and WebSite/WebPage JSON-LD. The richer
+  Person schema (affiliations, sameAs profiles) is our own include, emitted
+  only on the home page where Google looks for entity data. {%- endcomment %}
+  {% seo %}
+  {% feed_meta %}
+  {%- if page.url == "/" %}{% include person-jsonld.html %}{% endif %}
+
+  {%- comment -%} Favicons: an "LM" monogram set in Computer Modern (the site
+  face), paper letters on ribbon red. favicon.svg scales for modern tabs;
+  favicon.ico (16/32/48) covers the default /favicon.ico probe and legacy
+  browsers; the square PNGs are full-bleed so iOS/Android apply their own
+  corner mask. Regenerate with scripts in the repo history if the mark
+  changes. {%- endcomment %}
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#f5f3f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#26251f" media="(prefers-color-scheme: dark)">
+  <script>
+    // Re-apply saved reader preferences (see assets/js/ui-controls.js) before
+    // first paint so a forced theme doesn't flash the system palette.
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark")
+          document.documentElement.setAttribute("data-theme", t);
+        var z = parseInt(localStorage.getItem("zoom"), 10);
+        if (z >= 12 && z <= 22)
+          document.documentElement.style.fontSize = z + "px";
+      } catch (e) {}
+      // Pre-hide geo-targeted elements until assets/js/geo-content.js
+      // resolves the reader's country and deletes the non-matching ones
+      // from the DOM, so regional text never flashes. Injected here (not
+      // in the stylesheet) so that without JS nothing is ever hidden.
+      var geo = document.createElement("style");
+      geo.textContent =
+        "[data-geo-show]:not([data-geo-resolved])," +
+        "[data-geo-hide]:not([data-geo-resolved]){display:none !important}";
+      document.head.appendChild(geo);
+    })();
+  </script>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/font/Serif/cmun-serif.css">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">

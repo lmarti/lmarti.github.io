@@ -1,28 +1,41 @@
 ---
 layout: default
-title: Home
+# No title: jekyll-seo-tag then renders "Luis Martí | <tagline>" for the
+# home page, instead of a wasted "Home · Luis Martí".
 ---
 
 <section class="intro">
   <div class="photo" aria-hidden="true">photo</div>
   <div class="bio">
     <p>
-      Hi, I'm <strong>Luis Martí</strong> — a researcher working on machine
-      learning, evolutionary computation, and artificial intelligence.
+      Hi!, I'm <strong>Luis Martí</strong> — an AI scientist, currently <span data-geo-hide="FR"><strong>Chief Science Officer</strong> at 
+        <a href="https://www.docugami.com/">Docugami</a> (Seattle, U.S.A.) and</span>
+      <strong>Science Director</strong> at the <a href="https://www.inria.cl/"><strong>Inria Chile Research Center</strong></a>, the Chilean center 
+      of <a href="https://www.inria.fr/">Inria</a>, the French National Institute for Research in Digital Science and Technology. 
+      I am also an <strong>Adjunct Professor</strong> at the <a href="https://astronomia.udp.cl/">Institute of Astrophysical Studies</a>, 
+      <a href="https://www.udp.cl/">Universidad Diego Portales</a>.
     </p>
     <p>
-      This is my academic home: a list of my
-      <a href="/publications/">publications</a>, my <a href="/cv/">CV</a>, and
-      the occasional <a href="/blog/">note</a>.
-      <em>(Placeholder bio — replace with your own.)</em>
+      My research focuses on System 2 AI and neuro-symbolic ‘agentic’ reasoning, causality, natural language understanding, human-AI cooperation and active learning, conformal prediction and underspecification,
+      multi-modal/multi-task problems, physics-informed ML, nature-inspired metaheuristics and evolutionary multi-objective optimization, and all that. 
     </p>
+    <p>      
+      I apply my research in real-world domains like document understanding, astrophysics/astronomy, climate modeling, ecology, process optimization, energy, mining, and many more. I
+       am interested in applications of AI for science and AI for good, its policies and governance. 
+    </p>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Paul_Erdős">Paul Erdős</a> number: <a href="https://www.csauthors.net/distance/paul-erdos/luis-marti">3</a>,
+      <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan M. Turing</a> number: <a href="https://www.csauthors.net/distance/alan-turing/luis-marti">5</a>.
+    </p>
+    <div class="bio-elsewhere">
+      <span class="lede">You can find me in —</span>
+      {% include profile-glyphs.html %}
+    </div>
   </div>
 </section>
-
 <hr />
-
 <section class="recent">
-  <h2>Recent publications</h2>
+  <h2>Recent Publications</h2>
   {% bibliography --max 3 %}
   <p><a href="/publications/">See all publications &rarr;</a></p>
 </section>

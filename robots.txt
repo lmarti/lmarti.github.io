@@ -1,0 +1,55 @@
+---
+layout: null
+permalink: /robots.txt
+sitemap: false
+---
+# All crawlers welcome, including AI/LLM crawlers — being citable by
+# ChatGPT, Claude, Perplexity, and Google AI features is intentional.
+
+User-agent: *
+Allow: /
+
+# OpenAI (ChatGPT training, search, and browsing)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI (Gemini/AI Overviews grounding)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (feeds many LLM training sets)
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml
