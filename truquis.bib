@@ -1788,3 +1788,73 @@ keywords = {symbolic regression, multiview learning, evolutionary computing},
 location = {Centro Internacional de Convenciones CIC-ANDE, San Jose, Costa Rica},
 series = {GECCO '26}
 }
+@inproceedings{lira-2026:prior-coverage,
+  address   = {Trento, Italy},
+  author    = {Lira, Hernan and Mart\'{i}, Luis and Sanchez-Pi, Nayat},
+  booktitle = {19th {I}nternational {C}onference on {P}arallel {P}roblem {S}olving From {N}ature ({PPSN} 2026)},
+  doi       = {10.1007/978-3-032-36229-2_12},
+  editor    = {Doina Bucur and Della Cioppa, Antonio  and Ting Hu and Eric Medvet},
+  publisher = {Springer},
+  title     = {Prior Coverage and Search Bias in Multiview Symbolic Regression},
+  year      = {2026},
+}
+
+
+@inproceedings{lira-2026:prior-coverage,
+	abstract = {Structural prior initialization, which seeds part of the population with templates such as polynomials, trigonometric terms, and rational expressions, dramatically improves symbolic regression (SR), but the dependence on prior quality remains uncharacterized. We study this in multiview SR, which jointly fits several related datasets by decomposing each prediction into a shared core equation and view-specific residuals. We introduce a prior coverage framework characterizing an initialization library along two axes: coverage (the fraction of the target's structural components the library can represent) and diversity (the breadth of templates beyond target-matching ones). In a factorial study of 3 equation families, 7 prior regimes, and 30 seeds (3,780 runs), we find three behavioral regimes. When the target is reachable (assemblable within the search budget), higher coverage yields lower median loss (Spearman $\rho=-0.917$, $p=0.004$), and diversity adds further gains at equal coverage $p<0.001$). When the two trade off, a broad generic library at coverage 0.67 outperforms a narrow matched library at coverage 1.0. On unreachable targets all priors fail and complex templates trap search in local optima. A search-dynamics analysis (450 runs) reveals the mechanisms: seeded-lineage survival does not predict performance, structural diversity collapses by generation 15, and seeded subexpressions (motifs) largely vanish by generation 20: initialization helps by routing search into productive regions, not by preserving seeded structures. Prior effectiveness thus hinges on the interaction of coverage, diversity, and reachability.},
+	address = {Cham},
+	author = {Lira, Hernan and Mart\'{i}, Luis and Sanchez-Pi, Nayat},
+	booktitle = {Parallel Problem Solving from Nature -- PPSN XIX},
+	editor = {Iacca, Giovanni and Nadizar, Giorgia and Yaman, Anil and Bucur, Doina and Della Cioppa, Antonio and Hu, Ting and Medvet, Eric and Thomson, Sarah L.},
+	isbn = {978-3-032-36229-2},
+	pages = {184--199},
+	publisher = {Springer Nature Switzerland},
+	title = {Prior Coverage and Search Bias in Multiview Symbolic Regression},
+	year = {2027}}
+
+
+@inproceedings{Valenzuela2026-wk,
+  abstract  = {Generative AI in genomics increasingly relies on pretrained genomic 
+               foundation models (gLMs) as reusable sequence encoders, yet practical 
+               deployment faces persistent barriers: tokenization mismatch with 
+               biological signal, domain shift between pretraining corpora and 
+               target assays, and extreme long-tail label distributions that 
+               stress standard objectives. We study these challenges in the 
+               ecologically central COI/COX1 gene by benchmarking an alignment-free 
+               pipeline that converts nucleotide sequences into fixed-length embeddings 
+               (mean-pooled hidden states)
+               and trains lightweight MLP classifiers for independent rank-wise
+               prediction from Domain to Species. We evaluate two complementary
+               regimes that jointly expose frontiers for scalable genomic
+               representation learning: eKOI (15,947 sequences; protist-rich;
+               11,047 species) and MetaCOXI (5.6M metazoan sequences; 743,671
+               species). Across diverse gLM families (autoregressive decoders and
+               masked-language encoders) and explicit compositional baselines
+               (overlapping kmer frequencies up to k=6), we find that the
+               effective motif length induced by tokenization is a dominant
+               driver of fine-rank separability, while corpus alignment
+               (eukaryote- vs. prokaryote-pretraining) materially impacts
+               transfer even under identical tokenization. Finally,
+               imbalance-aware objectives (weighted cross-entropy and a hybrid
+               weighted+contrastive loss) can stabilize rare-taxonomy performance
+               but remain representation-dependent.},
+  author    = {Valenzuela, Luis and Aguilera Madrid, Sebastian and Mart\'{i}, Luis and Sanchez-Pi, Nayat},
+  booktitle = {Fourteenth International Conference on Learning Representations (ICLR 2026) Workshop on Generative AI in Genomics (Gen\textsuperscript{2}): {B}arriers and Frontiers},
+  location  = {Rio de Janeiro, Brazil},
+  month     = {5},
+  title     = {Benchmarking {COX1} Embeddings across Genomic Foundation Models, kmers, and Imbalance-Aware Losses},
+  url       = {https://openreview.net/forum?id=9ywkije3Md},
+  year      = {2026},
+}
+
+
+@inproceedings{valenzuela2026from,
+  abstract  = {Machine learning for genomics increasingly depends on pretrained genomic foundation models (gLMs) as reusable sequence encoders, yet adoption in biological discovery remains constrained by three linked challenges: tokenization mismatch with biological signal, domain shift between pretraining corpora and downstream assays, and extreme long-tail taxonomic labels that destabilize standard objectives. We study these issues in the ecologically central COI/COX1 gene through an alignment-free benchmark that converts nucleotide sequences into fixed-length embeddings (mean-pooled hidden states) and trains lightweight MLP classifiers for independent rank-wise prediction from Domain to Species. We evaluate two complementary regimes for scalable and interpretable genomic modeling: eKOI (15,947 sequences; protist-rich; 11,047 species) and MetaCOXI (5.6M metazoan sequences; 743,671 species). Across diverse gLM families (autoregressive decoders and masked-language encoders) and explicit compositional baselines (overlapping k-mer frequencies up to k=6), we find that effective motif length induced by tokenization is a dominant driver of fine-rank separability, while corpus alignment (eukaryote- vs. prokaryote-pretraining) materially affects transfer even under identical tokenization. Finally, imbalance-aware objectives (weighted cross-entropy and a hybrid weighted+contrastive loss) can stabilize rare-taxonomy performance but remain representation-dependent.},
+  author    = {Luis Valenzuela and Sebasti{\'a}n Aguilera Madrid and Luis Mart{\'\i} and Nayat S{\'a}nchez Pi},
+  booktitle = {Fourteenth International Conference on Learning Representations (ICLR 2026) Workshop on Machine Learning for Genomics Explorations},
+  location  = {Rio de Janeiro, Brazil},
+  month     = {5},
+  title     = {From k-mers to Genomic Foundation Models: {B}enchmarking {COX}1 Taxonomy under Extreme Class Imbalance},
+  url       = {https://openreview.net/forum?id=NkROfzjt4g},
+  year      = {2026},
+}
