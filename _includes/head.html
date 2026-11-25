@@ -9,18 +9,19 @@
   {% feed_meta %}
   {%- if page.url == "/" %}{% include person-jsonld.html %}{% endif %}
 
-  {%- comment -%} Favicons: an "LM" monogram set in Computer Modern (the site
-  face), paper letters on ribbon red. favicon.svg scales for modern tabs;
-  favicon.ico (16/32/48) covers the default /favicon.ico probe and legacy
-  browsers; the square PNGs are full-bleed so iOS/Android apply their own
-  corner mask. Regenerate with scripts in the repo history if the mark
-  changes. {%- endcomment %}
+  {%- comment -%} Favicons: an "LM" monogram in Computer Modern Bold (the
+  site face at its text optical size, so hairlines survive 16 px), paper
+  letters on a turquí ribbon tile. favicon.svg scales for modern tabs and
+  swaps to the dark palette on prefers-color-scheme; favicon.ico (16/32/48)
+  covers the default /favicon.ico probe and legacy browsers; the square PNGs
+  are full-bleed so iOS/Android apply their own corner mask. Source and build
+  script live in _favicon-src/. {%- endcomment %}
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#f5f3f0" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#26251f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fafaf6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#252831" media="(prefers-color-scheme: dark)">
   <script>
     // Re-apply saved reader preferences (see assets/js/ui-controls.js) before
     // first paint so a forced theme doesn't flash the system palette.

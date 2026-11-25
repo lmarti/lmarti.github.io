@@ -9,27 +9,15 @@ description: >-
   education, awards, research projects, and service.
 ---
 
-I am the Science Director of the [Inria Chile Research Center](https://inria.cl), the Chilean center of Inria, the French National Institute for Research in Digital Science and Technology. This page is a summary — the full CV is available as a [PDF](/docs/cv.pdf), and the complete list of papers is on the [publications page](/publications/).
+## Positions
 
-Before, I was a **senior researcher** the [TAU team](https://www.inria.fr/en/tau) at the [Inria Saclay Center](https://www.inria.fr/en/saclay) in Paris, France and **professor (tenured)** at the [Institute of Computing](https://www.ic.uff.br/) of the [Universidade Federal Fluminense](https://www.uff.br), Rio de Janeiro, Brazil. Previous to that, I was a **CNPq Young Talent of Science Award Fellow** at the [Computational Intelligence and Robotics Laboratory (LIRA)](https://www.lira.puc-rio.br/) of the [Department of Electrical Engineering](https://www.ele.puc-rio.br/) of the [Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio)](https://www.puc-rio.br/), in Rio de Janeiro, Brazil.
-
-## Research interests
-
-Artificial intelligence and machine learning, with emphasis on: 'System 2' AI
-and neuro-symbolic 'agentic' reasoning; multi-modal foundation models (LLMs)
-and natural language understanding; causality, conformal prediction and
-underspecification; nature-inspired metaheuristics and evolutionary
-multi-objective optimization; physics-informed ML; AI for science; AI for
-good, policies and governance; and human-AI cooperation. Applications in
-aerospace, astronomy, climate, energy, finance, logistics, ocean ecology,
-mining, smart agriculture, and more.
-
-## Appointments
-
-- **Science Director**, [Inria Chile Research Center](https://inria.cl), Inria — Paris, France / Santiago de Chile, Chile, 2019–present.
-- **Chief Science Officer**, [Docugami, Inc.](https://www.docugami.com) — Kirkland (WA), U.S.A., 2018–present. Leading the science team on natural language processing, machine learning and deep learning; grants with NSF and NASA.
+- **Scientific Director**, [Inria Chile Research Center](https://inria.cl), Inria, French National Research Institute on Digital Science and Technology. Paris, France / Santiago de Chile, Chile, 2019–present.
+<span data-geo-hide="FR,CL"> -  **Chief Science Officer**, [Docugami](https://www.docugami.com/) (Seattle, USA) and</span>
 - **Adjunct Professor**, PhD Program on Astrophysics, [Institute of Astrophysical Studies](https://astronomia.udp.cl/), Universidad Diego Portales — Santiago de Chile, Chile, 2022–present.
 - **CSO and Founder**, Brighthean Consulting — Madrid/Paris/Rio de Janeiro, 2017–present.
+
+### Past roles
+
 - **Associate Researcher**, [Team Tackling the Underspecified (TAU)](https://www.inria.fr/en/tau), Inria & Université de Paris-Saclay — Saclay, France, 2015–2018.
 - **Professor (tenured)**, Institute of Computing, Universidade Federal Fluminense — Rio de Janeiro, Brazil, 2015–2019. Co-head of the Group of Research in Intelligence and Optimization (RIO Group); chair of the IEEE CIS Rio de Janeiro Chapter.
 - **CNPq Young Talent of Science Fellow**, Laboratory of Adaptive Intelligence and Robotics (LIRA), Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio) — Brazil, 2013–2015.
@@ -56,6 +44,7 @@ mining, smart agriculture, and more.
 
 ## Selected research projects
 
+- **MOFOMO** — multimodal foundation models for a digital twin of the ocean, with pilots on harmful algal blooms in southern Chile and coral bleaching in Moorea; Google.org Impact Challenge: AI for Science, 2026–2029 (co-PI).
 - **OcéanIA** — AI, machine learning and modeling for understanding the oceans and climate change; Inria Challenge, 2020–2026 (co-PI).
 - **HUEMUL** — Human+AI ensembled machine translation for underrepresented languages, 2024–2026 (co-PI).
 - **LLACA** — knowledge-graph-augmented LLMs for cultural references, 2025–2027 (co-PI).
@@ -75,10 +64,9 @@ mining, smart agriculture, and more.
 
 ## Society memberships
 
-Association for Computing Machinery (ACM; SIGEVO), Institute of Electrical
-and Electronics Engineers (IEEE; Computational Intelligence Society),
-International Neural Networks Society (INNS), Neural-Symbolic Learning and
-Reasoning Association (NeSy), and the Foundation for Open Access Statistics
+- Association for Computing Machinery (ACM; SIGEVO), Institute of Electrical and Electronics Engineers (IEEE; Computational Intelligence Society),
+- International Neural Networks Society (INNS),
+- Neural-Symbolic Learning and Reasoning Association (NeSy), and - Foundation for Open Access Statistics
 (FOAS).
 
-See the [publications page](/publications/) for the full list of papers, or download the [complete CV (PDF)](/docs/cv.pdf).
+See the [publications page](/publications/) for the full list of papers.

@@ -1,11 +1,13 @@
-// "Second Draft" — a matured take on the alixedi/typewriter port.
-// Signature devices preserved: cream paper sheet on a textured desk, stacked
-// rotated pages behind it, red typewriter-ribbon ink, and a letter-spaced
-// title. Deliberate deviations from the original: a five-step type scale
-// (spaced small caps for section headings instead of underlines — underlines
-// belong to links), hanging-indent references with year landmarks, and quiet
-// text toggles instead of bordered buttons. The ribbon red is arXiv's
-// #b31b1b; paper and ink are warmed one step.
+// "Turquí" — the Second Draft foundations re-inked in the azul turquí of the
+// Cuban flag: the deep vat-dyed indigo of the stripes, struck on the flag's
+// white-linen stripe as paper. Signature devices preserved: paper sheet on a
+// textured desk (a pale chambray weave by day, navy-night by dark), stacked
+// rotated pages, ribbon ink, and a letter-spaced title. A five-step type
+// scale (spaced small caps for section headings instead of underlines —
+// underlines belong to links), hanging-indent references with year landmarks,
+// and quiet text toggles instead of bordered buttons. The ribbon is turquí
+// #1e356f; the flag's red survives only as the h2 tick (--tick), one small
+// stroke per heading, never text.
 
 $mono: monospace;
 $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
@@ -15,39 +17,42 @@ $serif: "Computer Modern Serif", Cambria, "Times New Roman", Times, serif;
 
 // Colors are CSS custom properties so the site follows the browser's
 // light/dark preference via prefers-color-scheme. Light is the default;
-// the dark palette keeps the typewriter feel — warm dark "paper", warm
-// off-white ink, and a brighter ribbon red that stays legible on dark.
+// dark mode is the same desk at night: indigo-tinted paper, ink still warm,
+// and the turquí lifted to a luminous dye-under-moonlight blue that stays
+// legible on dark (5.9:1 on the night paper).
 // The sun/moon nav buttons (ui-controls.js) can force a theme by stamping
 // data-theme="light|dark" on <html>; the mixin below keeps the dark values
 // in one place for both the system path and the forced path.
 @mixin dark-palette {
-  --paper: #26251f;
-  --ink: #eae8da;
-  --ribbon: #ff7a6b;
-  --muted: #a09c8c;
-  --rule: #444135;
-  --title-link: #f1efe3;
+  --paper: #252831;
+  --ink: #e7e8e0;
+  --ribbon: #86a2ec;
+  --tick: #ef6a78;
+  --muted: #9ba1b0;
+  --rule: #3d4150;
+  --title-link: #f0f1ea;
   --title-shadow: #000;
   --code-bg: rgba(255, 255, 255, 0.08);
-  --bibtex-bg: #1f1e18;
-  --photo-a: #33322c;
-  --photo-b: #3d3c34;
+  --bibtex-bg: #1f222b;
+  --photo-a: #30343f;
+  --photo-b: #3a3e4a;
   --sheet-shadow: rgba(0, 0, 0, 0.75);
 }
 
 :root {
   color-scheme: light dark;
-  --paper: #f5f3f0;  //#fffef4
-  --ink: #26241f;
-  --ribbon: #b31b1b;
-  --muted: #6e6a5e;
-  --rule: #d8d4c2;
-  --title-link: #1e1c18;
+  --paper: #fafaf6; // the flag's white stripe, still paper — not #fff
+  --ink: #21242b; // blue-black iron-gall
+  --ribbon: #1e356f; // azul turquí (10.7:1 on paper)
+  --tick: #cb122b; // the triangle's red — h2 tick ONLY, never links or text
+  --muted: #5b6170;
+  --rule: #d4d7dc;
+  --title-link: #1b1e26;
   --title-shadow: #444;
   --code-bg: rgba(0, 0, 0, 0.05);
-  --bibtex-bg: #f9f7ea;
-  --photo-a: #f4f3df;
-  --photo-b: #e9e8d2;
+  --bibtex-bg: #eef0f1;
+  --photo-a: #eef0f4;
+  --photo-b: #e2e6ec;
   --sheet-shadow: rgba(0, 0, 0, 0.5);
 }
 
@@ -86,20 +91,22 @@ body {
   line-height: 1.5;
   color: var(--ink);
   margin: 80px 0;
-  background: url("../images/desk-linen.svg");
+  // Chambray desk: the pale blue cotton weave the Turquí palette was designed
+  // for (same feTurbulence tile recipe as the retired desk-linen.svg).
+  background: url("../images/desk-chambray.svg");
 }
 
-// The linen weave flattens to grey under a darkening overlay, so dark mode
-// gets its own tile. Must come after the body rule above: the `background`
-// shorthand there would otherwise reset this image. Same system/forced
-// split as the palette.
+// The weave flattens to grey under a darkening overlay, so dark mode gets its
+// own tile (navy-night chambray). Must come after the body rule above: the
+// `background` shorthand there would otherwise reset this image. Same
+// system/forced split as the palette.
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) body {
-    background-image: url("../images/desk-linen-dark.svg");
+    background-image: url("../images/desk-chambray-dark.svg");
   }
 }
 :root[data-theme="dark"] body {
-  background-image: url("../images/desk-linen-dark.svg");
+  background-image: url("../images/desk-chambray-dark.svg");
 }
 
 // ---- Paper sheet + stacked pages ----
@@ -138,7 +145,7 @@ body {
   transform: rotate(var(--rot-after, 1.4deg));
 }
 
-// ---- Red ribbon ink ----
+// ---- Ribbon ink (turquí) ----
 a:link,
 a:visited,
 a:active,
@@ -167,8 +174,9 @@ a.page-link:hover,
 
 // ---- Headings: the typist's hierarchy ----
 // Typists made hierarchy with spacing and capitals, not size. Section
-// headings are spaced small caps with a short ribbon tick — never underlined,
+// headings are spaced small caps with a short tick — never underlined,
 // because on this site underline means "link". Only page titles get big.
+// The tick is the one place the flag's red appears (--tick, not --ribbon).
 h1,
 h2,
 h3,
@@ -194,7 +202,7 @@ h2:not(.post-link)::after {
   content: "";
   display: block;
   width: 2.6rem;
-  border-top: 1px solid var(--ribbon);
+  border-top: 1px solid var(--tick);
   margin-top: 0.4rem;
 }
 h2.post-link {
@@ -727,7 +735,7 @@ ul.publications li.is-hidden {
 // Filters wear the entries' type-pill dress (%stamp-pill) so the control row
 // and the tags on the list below share one visual language. A touch more type
 // size and padding for comfortable click targets; the active filter (and
-// hover) takes the ribbon, echoing the nav's current-page red.
+// hover) takes the ribbon, echoing the nav's current-page turquí.
 .chip,
 .sort-toggle {
   @extend %stamp-pill;

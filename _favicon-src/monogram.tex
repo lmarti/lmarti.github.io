@@ -1,4 +1,7 @@
 \documentclass[border=0pt]{standalone}
 \begin{document}
-\fontsize{100}{100}\selectfont LM
+% 10 pt bold -> cmbx10, the bold *text* optical size of Computer Modern.
+% (Setting this at 100 pt picks cmr17, the display cut, whose hairlines fall
+% below one device pixel in a 16 px tab — see build_favicons.py.)
+\fontsize{10}{10}\selectfont\bfseries LM
 \end{document}
