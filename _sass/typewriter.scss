@@ -401,19 +401,8 @@ a.page-link[aria-current="page"] {
   width: 7rem;
   height: 7rem;
   border: 1px solid var(--ink);
-  background: repeating-linear-gradient(
-    45deg,
-    var(--photo-a),
-    var(--photo-a) 6px,
-    var(--photo-b) 6px,
-    var(--photo-b) 11px
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-size: 0.75rem;
-  text-align: center;
+  object-fit: cover;
+  background: #fafaf6; // portrait is baked on light paper; keep it so in dark mode
 }
 .intro .bio {
   flex: 1 1 16rem;

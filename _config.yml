@@ -48,7 +48,7 @@ profiles:
   #  url: https://www.researchgate.net/profile/Luis-Marti-2
   #- name: Inria Chile
   #  url: https://www.inria.cl/en/luis-marti
-# logo: /assets/images/luis-marti.jpg  # uncomment once a headshot exists; used as og:image fallback
+logo: /assets/images/og-luis-marti.jpg
 
 highlighter: rouge
 markdown: kramdown
@@ -96,3 +96,9 @@ exclude:
   - skills-lock.json
   - vendor
   - .cate
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/og-luis-marti.jpg  # og:image / twitter:image for every page
