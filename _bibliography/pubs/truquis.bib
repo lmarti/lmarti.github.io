@@ -1778,25 +1778,14 @@ year = {2026},
 isbn = {9798400724879},
 publisher = {Association for Computing Machinery},
 address = {New York, NY, USA},
-url = {https://doi.org/10.1145/3795095.3805119},
 doi = {10.1145/3795095.3805119},
 abstract = {Scientific modeling often requires discovering mathematical relationships that generalize across multiple related datasets while capturing context-specific deviations. We present a multiview symbolic regression method that decomposes predictions into a shared core equation and view-specific residual corrections. Through systematic ablation studies, we identify domain-informed initialization as the critical success factor: seeding the evolutionary population with common scientific building blocks (polynomials, trigonometric functions, and rational expressions) improves performance by two orders of magnitude compared to random initialization. The multiview decomposition is optimized via NSGA-II with three objectives: prediction accuracy, core complexity, and residual complexity. Additional mechanisms, including elite protection and motif-based enhancement provide consistent but marginal gains. We evaluate our approach on synthetic benchmarks with known ground-truth decompositions and on oceanographic data modeling microbial metabolism across depth layers. On the ocean dataset, our method achieves 99\% lower mean squared error than standard multiview symbolic regression, gradient boosting, and neural baselines across 50 prediction targets, while producing interpretable equations that reveal temperature and oxygen as dominant environmental drivers. Our results demonstrate that effective multiview symbolic regression depends more on appropriate initialization of the search space than on sophisticated search operators.},
-booktitle = {Proceedings of the Genetic and Evolutionary Computation Conference},
-pages = {790–798},
+booktitle = {GECCO '26: Proceedings of the Genetic and Evolutionary Computation Conference},
+pages = {790--798},
 numpages = {9},
 keywords = {symbolic regression, multiview learning, evolutionary computing},
 location = {Centro Internacional de Convenciones CIC-ANDE, San Jose, Costa Rica},
 series = {GECCO '26}
-}
-@inproceedings{lira-2026:prior-coverage,
-  address   = {Trento, Italy},
-  author    = {Lira, Hernan and Mart\'{i}, Luis and Sanchez-Pi, Nayat},
-  booktitle = {19th {I}nternational {C}onference on {P}arallel {P}roblem {S}olving From {N}ature ({PPSN} 2026)},
-  doi       = {10.1007/978-3-032-36229-2_12},
-  editor    = {Doina Bucur and Della Cioppa, Antonio  and Ting Hu and Eric Medvet},
-  publisher = {Springer},
-  title     = {Prior Coverage and Search Bias in Multiview Symbolic Regression},
-  year      = {2026},
 }
 
 
@@ -1809,8 +1798,10 @@ series = {GECCO '26}
 	isbn = {978-3-032-36229-2},
 	pages = {184--199},
 	publisher = {Springer Nature Switzerland},
+      doi       = {10.1007/978-3-032-36229-2_12},
+      location   = {Trento, Italy},
 	title = {Prior Coverage and Search Bias in Multiview Symbolic Regression},
-	year = {2027}}
+	year = {2026}}
 
 
 @inproceedings{Valenzuela2026-wk,
@@ -1858,3 +1849,63 @@ series = {GECCO '26}
   url       = {https://openreview.net/forum?id=NkROfzjt4g},
   year      = {2026},
 }
+
+@ARTICLE{Signor2026-ok,
+  title        = {Comparing phylogenetic trees of stars with spectral graph
+                  distances},
+  author       = {Signor, Theosamuele and Neto, Mat\'{i}as and Jofr\'{e}, Paula and
+                  Vitali, Sara and Hua, Xia and Tissera, Patricia B and
+                  Aguilera-G\'{o}mez, Claudia and Das, Payel and Tapia-Contreras,
+                  Brian and Yates, Robert M and Mart\'{i}, Luis and Sanchez-Pi,
+                  Nayat},
+  journaltitle = {Astronomy and Astrophysics},
+  publisher    = {EDP Sciences},
+  date         = {2026-09-28},
+  doi          = {10.1051/0004-6361/202662215},
+  issn         = {0004-6361,1432-0746},
+  abstract     = {Phylogenetic trees offer a hierarchical representation of
+                  chemical similarities among stars, from which their
+                  evolutionary histories can, in principle, be reconstructed.
+                  Simulation-based work suggests that phylogenetic trees built
+                  under different chemical evolution scenarios carry
+                  distinguishable structural imprints, but whether existing
+                  methods can detect this signal in practice is unclear. We
+                  evaluated a range of distance measures -- both classical
+                  tree-based and graph-theoretical, in terms of their ability to
+                  compare such trees. Our goal was to identify measures that are
+                  robust to observational noise and that separate trees built
+                  from populations with distinct chemical enrichment histories.
+                  We constructed phylogenetic trees using the Neighbor-Joining
+                  algorithm from chemical abundance vectors of solar twins and
+                  of stars associated with the Milky Way (MW) disk,
+                  Gaia–Sausage–Enceladus (GSE), and the Sagittarius dwarf
+                  spheroidal galaxy (Sgr). We then compared trees using
+                  classical tree-based and graph-based measures. Two benchmark
+                  tests assess: (1) stability under input perturbations within
+                  the same evolutionary history and (2) the discriminative power
+                  between distinct stellar populations used as proxies for
+                  different evolutionary histories. Classical tree metrics
+                  rapidly saturate under perturbations of order the typical
+                  abundance uncertainty (approx2σ, or approx0.05 dex per
+                  element) and fail to distinguish trees when leaf sets differ.
+                  In contrast, spectral distances vary smoothly with
+                  perturbation amplitude and provide a label-invariant framework
+                  for comparing trees built from disjoint sets of stars,
+                  including populations with distinct chemical evolutionary
+                  histories. Among the spectral measures evaluated, the
+                  Laplacian spectral distance shows the most consistent
+                  separation across the population pairs, while the normalized
+                  variant is the weakest due to its reduced sensitivity to
+                  branch lengths. Applied to MW, GSE, and Sgr stars, our
+                  spectral measures recover a distance ordering consistent with
+                  the known chemical enrichment histories of these populations.
+                  Beyond distinguishing well-characterized populations, this
+                  framework offers a means to compare, for example, an observed
+                  enrichment history with simulated ones to identify which best
+                  reproduces the observed tree structure.},
+  url          = {http://dx.doi.org/10.1051/0004-6361/202662215},
+  urldate      = {2026-10-13},
+  keywords     = {stars: abundances; galaxies: evolution},
+  language     = {en}
+}
+
