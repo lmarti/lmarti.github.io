@@ -1653,13 +1653,15 @@ location = {Wuhan, China}
   eprinttype = {hal}
 }
 
-@techreport{karmim2026multi,
-      title={Multi-Hop Knowledge Composition is Bound by Pretraining Exposure}, 
-      author={Yannis Karmim and Luis Mart\'{i} and Djamé Seddah and Valentin Barri\`{e}re},
+@inproceedings{karmim2026multihopknowledgecompositionbound,
+      title={Multi-Hop Knowledge Composition is Bound by Pretraining Exposure},
+      booktitle={2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)},
+      location={Budapest, Hungary},
+      author={Yannis Karmim and Luis Mart\'{i} and Djam\'{e} Seddah and Valentin Barri\`{e}re},
       year={2026},
       eprint={2606.09338},
       archivePrefix={arXiv},
       primaryClass={cs.CL},
-      doi={10.48550/arXiv.2606.09338},
-      abstract = {Large Language Models fail at implicit multi-hop reasoning: a model answers "When was X born?" ``Who is Y's closest friend?'' correctly but fails on ``When was Y's closest friend born?'' in a single forward pass, even when both facts are perfectly memorized and individually retrievable. We study this failure in a controlled natural language setting with a strict separation between individuals exposed to compositional contexts during pretraining and those that never appear in any such context. We confirm that compositional failure persists even at 97\% 1-hop accuracy, establishing the gap as a pretraining failure rather than a knowledge absence. We propose and test nine data-centric augmentation formats and find that compositional pretraining transfers to unseen questions for exposed individuals, but never to individuals absent from compositional pretraining, suggesting that exposure to compositional contexts during pretraining is a necessary condition for implicit multi-hop reasoning.}
+      url={https://arxiv.org/abs/2606.09338},
+      abstract={Large Language Models fail at implicit multi-hop reasoning: a model answers ``When was X born?'' and ``Who is Y's closest friend?'' correctly but fails on ``When was Y's closest friend born?'' in a single forward pass, even when both facts are perfectly memorized and individually retrievable. We study this failure in a controlled natural language setting with a strict separation between individuals exposed to compositional contexts during pretraining and those that never appear in any such context. We confirm that compositional failure persists even at 97\% 1-hop accuracy, establishing the gap as a pretraining failure rather than a knowledge absence. We propose and test nine data-centric augmentation formats and find that compositional pretraining transfers to unseen questions for exposed individuals, but never to individuals absent from compositional pretraining, suggesting that exposure to compositional contexts during pretraining is a necessary condition for implicit multi-hop reasoning. Code is available at \url{https://github.com/ykrmm/composition-bound}.}
 }
