@@ -399,7 +399,8 @@ a.page-link[aria-current="page"] {
 .intro .photo {
   flex: 0 0 auto;
   width: 7rem;
-  height: 7rem;
+  height: auto;
+  aspect-ratio: 3 / 4;
   border: 1px solid var(--ink);
   object-fit: cover;
   background: #fafaf6; // photo backdrop fallback while loading
