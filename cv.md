@@ -11,10 +11,9 @@ description: >-
 
 ## Positions
 
+<span data-geo-hide="FR,CL"> -  **Chief Science Officer**, [Docugami](https://www.docugami.com/), Seattle, USA, 2018-present.</span>
 - **Scientific Director**, [Inria Chile Research Center](https://inria.cl), Inria, French National Research Institute on Digital Science and Technology. Paris, France / Santiago de Chile, Chile, 2019–present.
-<span data-geo-hide="FR,CL"> -  **Chief Science Officer**, [Docugami](https://www.docugami.com/) (Seattle, USA) and</span>
 - **Adjunct Professor**, PhD Program on Astrophysics, [Institute of Astrophysical Studies](https://astronomia.udp.cl/), Universidad Diego Portales — Santiago de Chile, Chile, 2022–present.
-- **CSO and Founder**, Brighthean Consulting — Madrid/Paris/Rio de Janeiro, 2017–present.
 
 ### Past roles
 
